@@ -28,14 +28,17 @@ export default function Home() {
 
 
     
-  
+      {/* only when in phone */}
       <div className="bg-red-400 h-screen text-white text-3xl flex items-center justify-center sm:hidden">Go, Get a Laptop, you poor nigga..!</div>
     
-      <div className="bg-green-200 pt-[5.5rem] p-8 hidden sm:flex space-x-8 h-screen">
-        <div className="bg-green-100 w-1/4 rounded-lg"> <Leftbar totalTime={totalTime} settotalTime={settotalTime} text={text} setText={setText}/> </div>
-        <div className="bg-green-100 w-4/5 rounded-lg"> <Main totalTime={totalTime} settotalTime={settotalTime} time={time} setTime={setTime} text={text} setText={setText}/> </div>
-        <div className="bg-green-100 w-1/4 rounded-lg"> <Rightbar/> </div>
-      </div>
+      {/* only when not in phone */}
+      <div className="bg-green-200 pt-[5.5rem] p-8 hidden sm:inline-block md:flex space-y-5 md:space-y-0 md:space-x-8 min-h-screen">
+
+          <div className="bg-green-100 md:w-1/4 rounded-lg p-4"> <Leftbar totalTime={totalTime} settotalTime={settotalTime} text={text} setText={setText}/> </div>
+          <div className="bg-green-100 md:w-4/5 rounded-lg p-4"> <Main totalTime={totalTime} settotalTime={settotalTime} time={time} setTime={setTime} text={text} setText={setText}/> </div>
+          <div className="bg-green-100 md:w-1/4 rounded-lg p-4"> <Rightbar/> </div>
+        
+      </div>  
     </>
   );
 }

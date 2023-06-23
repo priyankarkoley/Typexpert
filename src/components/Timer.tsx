@@ -14,8 +14,9 @@ export default function Timer({
   status: number;
 }) {
   return (
-    <div className="flex h-10">
-      <div className="flex items-center">
+    <div className="sm:flex lg:flex md:block h-10">
+    <div className="block md:flex items-center justify-center lg:block w-full h-10">
+      <div className="lg:flex items-center h-10 min-w-fit">
         Your Time:{" "}
         {`
 					${time.h < 10 ? "0" + time.h : time.h} :
@@ -24,7 +25,9 @@ export default function Timer({
 					${time.ms < 10 ? "00" + time.ms : time.ms}
 				`}
       </div>
-      <div className="space-x-4 ml-auto mr-8">
+    </div>
+    <div className="block md:flex items-center justify-center lg:block min-w-fit">
+      <div className="space-x-2 w-fit h-10">
         {status === 0 ? (
           <button
             className="h-full bg-green-500 px-3 rounded-md"
@@ -87,6 +90,7 @@ export default function Timer({
           </button>
         )}
       </div>
+    </div>
     </div>
   );
 }
