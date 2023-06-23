@@ -2,7 +2,21 @@
 import { useState } from "react";
 import Timer from "./Timer";
 
-export default function Main({totalTime, settotalTime, time, setTime, text, setText} :{totalTime:number, settotalTime:any, time:{ ms: number; s: number; m: number; h: number }, setTime:any, text:string, setText:any}) {
+export default function Main({
+  totalTime,
+  settotalTime,
+  time,
+  setTime,
+  text,
+  setText,
+}: {
+  totalTime: number;
+  settotalTime: any;
+  time: { ms: number; s: number; m: number; h: number };
+  setTime: any;
+  text: string;
+  setText: any;
+}) {
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   let [tt, milliseconds, seconds, minutes, hours] = [
@@ -18,7 +32,7 @@ export default function Main({totalTime, settotalTime, time, setTime, text, setT
     setStatus(1);
     if (status === 0) {
       settotalTime(0);
-      tt=0;
+      tt = 0;
       run();
       setInt(setInterval(run, 10));
     }
@@ -33,6 +47,7 @@ export default function Main({totalTime, settotalTime, time, setTime, text, setT
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
+    setText('');
   };
 
   const run = () => {
@@ -50,15 +65,24 @@ export default function Main({totalTime, settotalTime, time, setTime, text, setT
     }
     milliseconds++;
     tt++;
-    settotalTime(tt)
+    settotalTime(tt);
     return setTime({ ms: milliseconds, s: seconds, m: minutes, h: hours });
   };
 
   return (
     <div className="p-10 2xl:p-20 space-y-10">
-      <p>{Math.round((totalTime/6000)*100)/100}</p>
       <div className="text-justify 2xl:text-xl">
-       Let's go about typing, fast typing is here, what about you? Well yes, you have to type right now about this, and then, you later get point. Now, start typing right now, if you type faster at lower than thirty seconds, you are master, this will be challenging, 1 2 3 4 5 6 7 8 9 10, Stop about slow typing, You should type this for your points if you didn't logged up/sign in yet, you should sign in for your account, right now, No two fingers, only ten fingers, ten fingers make this more perfect, if you type this with your two fingers, you should probably slower than me, but if your WPM is higher than me, you are master of the typist. Right now, stopping the type test right now, just kidding, ok now, you can stop there right now, sorry for the long text.
+        Let's go about typing, fast typing is here, what about you? Well yes,
+        you have to type right now about this, and then, you later get point.
+        Now, start typing right now, if you type faster at lower than thirty
+        seconds, you are master, this will be challenging, 1 2 3 4 5 6 7 8 9 10,
+        Stop about slow typing, You should type this for your points if you
+        didn't logged up/sign in yet, you should sign in for your account, right
+        now, No two fingers, only ten fingers, ten fingers make this more
+        perfect, if you type this with your two fingers, you should probably
+        slower than me, but if your WPM is higher than me, you are master of the
+        typist. Right now, stopping the type test right now, just kidding, ok
+        now, you can stop there right now, sorry for the long text.
       </div>
       <textarea
         placeholder="Your time will start when you start typing..."
