@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Timer({
-  ptime,
+  time,
   onStart,
   onPause,
   onReset,
   status,
 }: {
-  ptime: { ms: number; s: number; m: number; h: number };
+  time: { ms: number; s: number; m: number; h: number };
   onStart: any;
   onPause: any;
   onReset: any;
@@ -18,10 +18,10 @@ export default function Timer({
       <div className="flex items-center">
         Your Time:{" "}
         {`
-					${ptime.h < 10 ? "0" + ptime.h : ptime.h} :
-					${ptime.m < 10 ? "0" + ptime.m : ptime.m} :
-					${ptime.s < 10 ? "0" + ptime.s : ptime.s} :
-					${ptime.ms < 10 ? "00" + ptime.ms : ptime.ms}
+					${time.h < 10 ? "0" + time.h : time.h} :
+					${time.m < 10 ? "0" + time.m : time.m} :
+					${time.s < 10 ? "0" + time.s : time.s} :
+					${time.ms < 10 ? "00" + time.ms : time.ms}
 				`}
       </div>
       <div className="space-x-4 ml-auto mr-8">
