@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Navbar() {
   return (
-    <div className="absolute w-screen text-xl text-white h-14 bg-green-700 flex items-center pl-8">
-      <span >TYPEXPERT</span>
-      <span className="ml-auto mr-8">
+    <div className="flex absolute w-screen text-xl sm:text-lg md:text-xl text-white h-14 bg-green-700 items-center sm:pl-8">
+      <div className="w-screen text-center sm:w-fit">TYPEXPERT</div>
+      <span className="hidden sm:inline-block sm:ml-auto sm:mr-8">
         <span className="pr-8">HOME</span>
         <span className="pr-8">PLAY</span>
         <span className="pr-8">LOGIN</span>

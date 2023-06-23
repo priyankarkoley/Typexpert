@@ -30,7 +30,7 @@ export default function Home() {
     
   
       <div className="bg-red-400 h-screen text-white text-3xl flex items-center justify-center sm:hidden">Go, Get a Laptop, you poor nigga..!</div>
-      <div className="bg-red-400 h-screen text-white text-3xl hidden sm:flex md:hidden items-center justify-center">Rotating won't make it better, you're still poor!</div>
+    
       <div className="bg-green-200 pt-[5.5rem] p-8 hidden sm:flex space-x-8 h-screen">
         <div className="bg-green-100 w-1/4 rounded-lg"> <Leftbar totalTime={totalTime} settotalTime={settotalTime} text={text} setText={setText}/> </div>
         <div className="bg-green-100 w-4/5 rounded-lg"> <Main totalTime={totalTime} settotalTime={settotalTime} time={time} setTime={setTime} text={text} setText={setText}/> </div>
