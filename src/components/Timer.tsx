@@ -18,9 +18,6 @@ export default function Timer({
   onReset:  ()=>void
 }) {
 
-  
-
-
   return (
     <div className="sm:flex lg:flex md:block h-10">
     <div className="block md:flex items-center justify-center lg:block w-full h-10">

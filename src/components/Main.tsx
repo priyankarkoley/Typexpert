@@ -75,7 +75,7 @@ export default function Main({
   let finisher = () =>{
     if(text.includes(nl)){
       console.log("found")
-      pause();
+      onPause();
     }
   }
 
@@ -90,7 +90,7 @@ export default function Main({
         value={text}
         className="p-2 text-white min-w-full bg-slate-700"
         onChange={(e) => {
-          start();
+          if(timer.status!=='started')onStart();
           setText(e.target.value);
           finisher();
         }}
