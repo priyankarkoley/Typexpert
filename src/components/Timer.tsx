@@ -1,34 +1,37 @@
 import React from "react";
 
 export default function Timer({
-  time,
+  timer,
   onStart,
   onPause,
-  onReset,
-  status,
+  onResume,
+  onReset
 }: {
-  time: { ms: number; s: number; m: number; h: number };
-  onStart: any;
-  onPause: any;
-  onReset: any;
-  status: number;
+  timer: {
+    startTime: number;
+    endTime: number;
+    acc: number;
+    status:'started'|'paused'|'initial';};
+  onStart:  ()=>void;
+  onPause:  ()=>void;
+  onResume: ()=>void;
+  onReset:  ()=>void
 }) {
+
+  
+
+
   return (
     <div className="sm:flex lg:flex md:block h-10">
     <div className="block md:flex items-center justify-center lg:block w-full h-10">
       <div className="lg:flex items-center h-10 min-w-fit">
-        Your Time:{" "}
-        {`
-					${time.h < 10 ? "0" + time.h : time.h} :
-					${time.m < 10 ? "0" + time.m : time.m} :
-					${time.s < 10 ? "0" + time.s : time.s} :
-					${time.ms < 10 ? "00" + time.ms : time.ms}
-				`}
+        Your Time {timer.acc}
+        
       </div>
     </div>
     <div className="block md:flex items-center justify-center lg:block min-w-fit">
       <div className="space-x-2 w-fit h-10">
-        {status === 0 ? (
+        {timer.status === 'initial' ? (
           <button
             className="h-full bg-green-500 px-3 rounded-md"
             onClick={() => {
@@ -41,14 +44,14 @@ export default function Timer({
           <button
             className="h-full bg-green-500 px-3 rounded-md"
             onClick={() => {
-              onStart();
+              onResume();
             }}
           >
             RESUME
           </button>
         )}
 
-        {status === 1 ? (
+        {timer.status === 'started' ? (
           <button
             className="h-full bg-orange-400 px-3 rounded-md"
             onClick={() => {
@@ -69,7 +72,7 @@ export default function Timer({
           </button>
         )}
 
-        {status !== 0 ? (
+        {timer.status !== 'initial' ? (
           <button
             className="h-full bg-red-500 px-3 rounded-md"
             onClick={() => {
@@ -91,6 +94,7 @@ export default function Timer({
         )}
       </div>
     </div>
+    
     </div>
   );
 }

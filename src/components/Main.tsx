@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Timer from "./Timer";
+import useTimer from "@/hooks/useTimer";
 
 export default function Main({
   totalTime,
@@ -17,6 +18,8 @@ export default function Main({
   text: string;
   setText: any;
 }) {
+
+  const  { timer, onStart, onPause, onReset, onResume } = useTimer();
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   let [tt, milliseconds, seconds, minutes, hours] = [
@@ -94,11 +97,11 @@ export default function Main({
       />
       <div className="h-20">
       <Timer
-        time={time}
-        onStart={start}
-        onPause={pause}
-        onReset={reset}
-        status={status}
+        timer={timer}
+        onStart={onStart}
+        onPause={onPause}
+        onResume={onResume}
+        onReset={onReset}
         />
       </div>
     </div>
