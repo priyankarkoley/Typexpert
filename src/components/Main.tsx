@@ -18,8 +18,7 @@ export default function Main({
   text: string;
   setText: any;
 }) {
-
-  const  { timer, onStart, onPause, onReset, onResume } = useTimer();
+  const { timer, onStart, onPause, onReset, onResume } = useTimer();
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   let [tt, milliseconds, seconds, minutes, hours] = [
@@ -50,7 +49,7 @@ export default function Main({
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
-    setText('');
+    setText("");
   };
 
   const run = () => {
@@ -71,18 +70,31 @@ export default function Main({
     settotalTime(tt);
     return setTime({ ms: milliseconds, s: seconds, m: minutes, h: hours });
   };
-  let nl="\n"
-  let finisher = () =>{
-    if(text.includes(nl)){
-      console.log("found")
+  let nl = "\n";
+  let finisher = () => {
+    if (text.includes(nl)) {
+      console.log("found");
       onPause();
     }
-  }
+  };
 
   return (
     <div className=" space-y-5 md:space-y-10 max-w-max p-6">
       <div className="text-justify text-sm md:text-base lg:text-lg">
-        Let's go about typing, fast typing is here, what about you? Well yes, you have to type right now about this, and then, you later get point. Now, start typing right now, if you type faster at lower than thirty seconds, you are master, this will be challenging, 1 2 3 4 5 6 7 8 9 10, Stop about slow typing. You should type this for your points if you didn't logged up/sign in yet, you should sign in for your account, right now. <span className="hidden lg:inline-block"> No two fingers, only ten fingers, ten fingers make this more perfect, if you type this with your two fingers, you should probably slower than me, but if your WPM is higher than me, you are master of the typist. Right now, stopping the type test right now, just kidding, ok now, you can stop there right now, sorry for the long text.
+        Let's go about typing, fast typing is here, what about you? Well yes,
+        you have to type right now about this, and then, you later get point.
+        Now, start typing right now, if you type faster at lower than thirty
+        seconds, you are master, this will be challenging, 1 2 3 4 5 6 7 8 9 10,
+        Stop about slow typing. You should type this for your points if you
+        didn't logged up/sign in yet, you should sign in for your account, right
+        now.{" "}
+        <span className="hidden lg:inline-block">
+          {" "}
+          No two fingers, only ten fingers, ten fingers make this more perfect,
+          if you type this with your two fingers, you should probably slower
+          than me, but if your WPM is higher than me, you are master of the
+          typist. Right now, stopping the type test right now, just kidding, ok
+          now, you can stop there right now, sorry for the long text.
         </span>
       </div>
       <textarea
@@ -90,18 +102,18 @@ export default function Main({
         value={text}
         className="p-2 text-white min-w-full bg-slate-700"
         onChange={(e) => {
-          if(timer.status!=='started')onStart();
+          if (timer.status !== "started") onStart();
           setText(e.target.value);
           finisher();
         }}
       />
       <div className="h-20">
-      <Timer
-        timer={timer}
-        onStart={onStart}
-        onPause={onPause}
-        onResume={onResume}
-        onReset={onReset}
+        <Timer
+          timer={timer}
+          onStart={onStart}
+          onPause={onPause}
+          onResume={onResume}
+          onReset={onReset}
         />
       </div>
     </div>
