@@ -21,7 +21,7 @@ export default function Dashboard({
         YOUR DASHBOARD:
       </div>
       <div>
-        <div>Your current typiing speed is: </div>
+        <div>Your current typing speed is: </div>
         <div className={`text-2xl ${col} font-bold border-2 w-fit px-2 my-2`}
           >{" "}{wpm ? Math.round(wpm) : "000"} wpm.
           </div>
