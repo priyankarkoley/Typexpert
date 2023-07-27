@@ -86,6 +86,7 @@ export default function Main({
 
       </div>
       <textarea
+        rows={4}
         placeholder="Press ENTER twice to finish."
         value={text}
         className="p-2 text-white min-w-full bg-slate-700"

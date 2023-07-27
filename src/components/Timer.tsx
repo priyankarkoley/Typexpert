@@ -42,14 +42,13 @@ export default function Timer({
             className="disabled:bg-stone-500  h-full bg-green-500 px-3 rounded-md"
             onClick={() => {
               onReset();
-              onStart();
             }}
           >
-            START OVER
+            RESTART
           </button>
         )}
 
-        {status === 1 ? (
+        {/* {status === 1 ? (
           <button
             className="h-full bg-orange-400 px-3 rounded-md"
             onClick={() => {
@@ -89,7 +88,7 @@ export default function Timer({
           >
             RESET
           </button>
-        )}
+        )} */}
       </div>
     </div>
     </div>
