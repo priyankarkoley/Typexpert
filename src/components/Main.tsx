@@ -4,7 +4,7 @@ import Timer from "./Timer";
 import useTimer from "@/hooks/useTimer";
 
 export default function Main({
-  totalTime,
+  timer,
   settotalTime,
   time,
   setTime,
@@ -18,7 +18,7 @@ export default function Main({
   text: string;
   setText: any;
 }) {
-  const { timer, onStart, onPause, onReset, onResume } = useTimer();
+  const {onStart, onPause, onReset, onResume } = useTimer();
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   let [tt, milliseconds, seconds, minutes, hours] = [
@@ -79,7 +79,7 @@ export default function Main({
   };
 
   return (
-    <div className=" space-y-5 md:space-y-10 max-w-max p-6">
+    <div className=" space-y-5 md:space-y-10 p-6">
       <div className="text-justify text-sm md:text-base lg:text-lg">
         Let's go about typing, fast typing is here, what about you? Well yes,
         you have to type right now about this, and then, you later get point.
@@ -87,15 +87,7 @@ export default function Main({
         seconds, you are master, this will be challenging, 1 2 3 4 5 6 7 8 9 10,
         Stop about slow typing. You should type this for your points if you
         didn't logged up/sign in yet, you should sign in for your account, right
-        now.{" "}
-        <span className="hidden lg:inline-block">
-          {" "}
-          No two fingers, only ten fingers, ten fingers make this more perfect,
-          if you type this with your two fingers, you should probably slower
-          than me, but if your WPM is higher than me, you are master of the
-          typist. Right now, stopping the type test right now, just kidding, ok
-          now, you can stop there right now, sorry for the long text.
-        </span>
+        now
       </div>
       <textarea
         placeholder="Your time will start when you start typing... Press ENTER twice to finish."
