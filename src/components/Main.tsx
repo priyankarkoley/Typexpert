@@ -4,6 +4,8 @@ import Timer from "./Timer";
 import {TYPE_THIS} from "./../var";
 
 export default function Main({
+  letterCount,
+  setLetterCount,
   correctCount,
   setCorrectCount,
   inCorrectCount,
@@ -17,6 +19,8 @@ export default function Main({
   text,
   setText,
 }: {
+  letterCount:number,
+  setLetterCount:any,
   correctCount:number,
   setCorrectCount:any,
   inCorrectCount:number,
@@ -106,32 +110,33 @@ export default function Main({
     if(word===(myGivenString[i]))
       setCol("text-green-200");
     if(word.includes(" ")){
+      setLetterCount(letterCount+text.length);
       setText("");
       if(word.trim()===myGivenString[i])
         setCorrectCount(correctCount+1);
       else
       setInCorrectCount(inCorrectCount+1);
       setI(i+1);
+      if(i===myGivenString.length-1)
+        pause();
     }
-    console.log(correctCount, inCorrectCount)
-    // console.log("------\n",i);
-    // console.log(myGivenString[i]);
-    // console.log(word);   
+    console.log(i)
   }
   // console.log(correctCount, inCorrectCount)
   return (
-    <div className="space-y-5 md:space-y-10 max-w-max p-6">  
+    <div className="space-y-5 md:space-y-10 md:w-full p-6">  
+    {/* <div>{i}</div> */}
       <div>
       {/* //TODO */}
       </div>
-      <div className="text-justify text-sm md:text-base lg:text-lg"> 
+      <div className="w-full text-justify text-sm md:text-base lg:text-lg"> 
         {TYPE_THIS}
       </div>
       <textarea
         rows={4}
         // placeholder="Press ENTER or SPACE to finish."
         value={text}
-        className={`${col} p-2 min-w-full bg-slate-700`}
+        className={`${col} p-2 w-full bg-slate-700`}
         onChange={(e) => {
           start();
           setText(e.target.value);
