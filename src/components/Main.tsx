@@ -144,8 +144,7 @@ export default function Main({
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
         {TYPE_THIS.slice(0, wordCount).map((value, index) => {
           return (
-            <span><span
-            key={index}
+            <span key={index}><span
             className={`${i === index ? "border-b-2 border-green-500" : ""} ${
               correctStore[index] === -1
                 ? "text-black"
