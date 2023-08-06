@@ -4,6 +4,10 @@ import Timer from "./Timer";
 import {TYPE_THIS} from "./../var";
 
 export default function Main({
+  correctCount,
+  setCorrectCount,
+  inCorrectCount,
+  setInCorrectCount,
   check,
   setCheck,
   totalTime,
@@ -13,6 +17,10 @@ export default function Main({
   text,
   setText,
 }: {
+  correctCount:number,
+  setCorrectCount:any,
+  inCorrectCount:number,
+  setInCorrectCount:any,
   check:boolean,
   setCheck:any,
   totalTime: number;
@@ -22,8 +30,8 @@ export default function Main({
   text: string;
   setText: any;
 }) {
-  let col = check ? "text-green-700":"text-red-700";
-
+  const [i, setI] = useState<number>(0)
+  const [col, setCol] = useState<string>("")
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   let [tt, milliseconds, seconds, minutes, hours] = [
@@ -83,16 +91,34 @@ export default function Main({
     }
   }
 
-  let checker = () =>{
-    let myGivenString = TYPE_THIS.split(" ");
-    let myCheckString = text.split(" ");
 
-    console.log(myGivenString);
-    console.log(myCheckString);
-    
-    
+// -------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------
+
+
+  let checker = (word:string) =>{
+    let myGivenString = TYPE_THIS.split(" ");
+    if(myGivenString[i].includes(word))
+      setCol("text-white");
+    else
+      setCol("text-red-300")
+    if(word===(myGivenString[i]))
+      setCol("text-green-200");
+    if(word.includes(" ")){
+      setText("");
+      if(word.trim()===myGivenString[i])
+        setCorrectCount(correctCount+1);
+      else
+      setInCorrectCount(inCorrectCount+1);
+      setI(i+1);
+    }
+    console.log(correctCount, inCorrectCount)
+    // console.log("------\n",i);
+    // console.log(myGivenString[i]);
+    // console.log(word);   
   }
-  // checker();
+  // console.log(correctCount, inCorrectCount)
   return (
     <div className="space-y-5 md:space-y-10 max-w-max p-6">  
       <div>
@@ -103,13 +129,13 @@ export default function Main({
       </div>
       <textarea
         rows={4}
-        placeholder="Press ENTER or SPACE to finish."
+        // placeholder="Press ENTER or SPACE to finish."
         value={text}
-        className="p-2 text-white min-w-full bg-slate-700"
+        className={`${col} p-2 min-w-full bg-slate-700`}
         onChange={(e) => {
           start();
           setText(e.target.value);
-          checker();
+          checker(e.target.value);
         }}
       />
       <div className="h-20">
