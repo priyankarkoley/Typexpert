@@ -14,7 +14,7 @@ export default function Dashboard({
 }) {
   let wpm = text.length / 5 / (totalTime / 6000);
   let col = check ? "border-green-700 text-green-700":"border-red-700 text-red-700";
-  console.log(check);
+  // console.log(check);
   return (
     <div className="space-y-8 py-6 w-full p-6">
       <div className="md:text-2xl lg:text-3xl flex items-center">

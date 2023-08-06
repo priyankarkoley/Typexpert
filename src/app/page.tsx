@@ -17,7 +17,7 @@ export default function Home() {
       {/* only when not in phone */}
         <div className="bg-green-200 flex justify-center md:items-center md:min-h-screen">
           <div className="max-w-5xl pt-[5.5rem] p-8 hidden sm:inline-block md:flex space-y-8 md:space-y-0 md:space-x-7 min-h-screen md:min-h-fit">
-          <div className="bg-green-100 md:w-2/3 rounded-lg lg:p-4"> <Main setCheck={setCheck} totalTime={totalTime} settotalTime={settotalTime} time={time} setTime={setTime} text={text} setText={setText}/> </div>
+          <div className="bg-green-100 md:w-2/3 rounded-lg lg:p-4"> <Main check={check} setCheck={setCheck} totalTime={totalTime} settotalTime={settotalTime} time={time} setTime={setTime} text={text} setText={setText}/> </div>
           <div className="bg-green-100 md:w-1/3 rounded-lg lg:p-4"> <Dashboard check={check} setCheck={setCheck} totalTime={totalTime} text={text}/> </div>        
           </div>
       </div>  

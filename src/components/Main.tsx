@@ -4,6 +4,7 @@ import Timer from "./Timer";
 import {TYPE_THIS} from "./../var";
 
 export default function Main({
+  check,
   setCheck,
   totalTime,
   settotalTime,
@@ -12,6 +13,7 @@ export default function Main({
   text,
   setText,
 }: {
+  check:boolean,
   setCheck:any,
   totalTime: number;
   settotalTime: any;
@@ -20,6 +22,7 @@ export default function Main({
   text: string;
   setText: any;
 }) {
+  let col = check ? "text-green-700":"text-red-700";
 
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
@@ -32,7 +35,7 @@ export default function Main({
   ];
 
   const start = () => {
-    console.log("start");
+    //console.log("start");
     setStatus(1);
     if (status === 0) {
       settotalTime(0);
@@ -42,12 +45,12 @@ export default function Main({
     }
   };
   const pause = () => {
-    console.log("pause");
+    //console.log("pause");
     setStatus(2);
     clearInterval(int);
   };
   const reset = () => {
-    console.log("reset");
+    //console.log("reset");
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
@@ -74,13 +77,24 @@ export default function Main({
   };
   let finisher = () =>{
     if(text===TYPE_THIS){
-      console.log("found");
+      //console.log("found");
       setCheck(true);
       pause();
     }
   }
+
+  let checker = () =>{
+    let myGivenString = TYPE_THIS.split(" ");
+    let myCheckString = text.split(" ");
+
+    console.log(myGivenString);
+    console.log(myCheckString);
+    
+    
+  }
+  // checker();
   return (
-    <div className=" space-y-5 md:space-y-10 max-w-max p-6">  
+    <div className="space-y-5 md:space-y-10 max-w-max p-6">  
       <div>
       {/* //TODO */}
       </div>
@@ -95,7 +109,7 @@ export default function Main({
         onChange={(e) => {
           start();
           setText(e.target.value);
-          finisher();
+          checker();
         }}
       />
       <div className="h-20">

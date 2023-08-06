@@ -28,7 +28,7 @@ export default function Timer({
     </div>
     <div className="block md:flex items-center justify-center lg:block min-w-fit">
       <div className="space-x-2 w-fit h-10">
-        {status !== 2 ? (
+        {status === 0 ? (
           <button
             className="h-full bg-green-500 px-3 rounded-md"
             onClick={() => {
@@ -41,13 +41,20 @@ export default function Timer({
           <button
             className="disabled:bg-stone-500  h-full bg-green-500 px-3 rounded-md"
             onClick={() => {
+              onPause();
+            }}
+          >
+            PAUSE
+          </button>
+        )}
+          <button
+            className="disabled:bg-stone-500  h-full bg-green-500 px-3 rounded-md"
+            onClick={() => {
               onReset();
             }}
           >
-            RESTART
+            RESET
           </button>
-        )}
-
         {/* {status === 1 ? (
           <button
             className="h-full bg-orange-400 px-3 rounded-md"
