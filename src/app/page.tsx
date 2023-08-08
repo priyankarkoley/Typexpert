@@ -1,5 +1,5 @@
 "use client";
-import { use, useState } from "react";
+import { useState } from "react";
 import Main from "../components/Main";
 import Dashboard from "../components/Dashboard";
 
@@ -10,9 +10,15 @@ export default function Home() {
   const [correctCount, setCorrectCount] = useState<number>(0);
   const [inCorrectCount, setInCorrectCount] = useState<number>(0);
   const [text, setText] = useState<string>("");
+  const [writtenWords, setWrittenWords] = useState<string>('')
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
   const [totalTime, settotalTime] = useState(0);
-  const [check, setCheck] = useState(false);
+
+  const [correctStore, setCorrectStore] = useState<Array<number>>(
+    Array.apply(null, Array(wordCount)).map(function () {
+      return -1;
+    })
+  );
 
   return (
     <>
@@ -34,14 +40,16 @@ export default function Home() {
               setCorrectCount={setCorrectCount}
               inCorrectCount={inCorrectCount}
               setInCorrectCount={setInCorrectCount}
-              check={check}
-              setCheck={setCheck}
               totalTime={totalTime}
               settotalTime={settotalTime}
               time={time}
               setTime={setTime}
               text={text}
               setText={setText}
+              writtenWords={writtenWords}
+              setWrittenWords={setWrittenWords}
+              correctStore={correctStore}
+              setCorrectStore={setCorrectStore}
             />
           </div>
           <div className="bg-green-100 md:w-2/5 rounded-lg lg:p-4">
@@ -49,13 +57,10 @@ export default function Home() {
               wordCount={wordCount}
               letterCount={letterCount}
               correctCount={correctCount}
-              setCorrectCount={setCorrectCount}
               inCorrectCount={inCorrectCount}
-              setInCorrectCount={setInCorrectCount}
-              check={check}
-              setCheck={setCheck}
               totalTime={totalTime}
-              text={text}
+              writtenWords={writtenWords}
+              correctStore={correctStore}
             />
           </div>
         </div>

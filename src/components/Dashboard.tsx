@@ -1,38 +1,36 @@
 import React, { useState } from "react";
-import { MyString } from "./../var";
 
 export default function Dashboard({
   wordCount,
   letterCount,
   correctCount,
-  setCorrectCount,
   inCorrectCount,
-  setInCorrectCount,
-  check,
-  setCheck,
   totalTime,
-  text,
+  writtenWords,
+  correctStore
 }: {
   wordCount:number,
   letterCount: number;
   correctCount: number;
-  setCorrectCount: any;
   inCorrectCount: number;
-  setInCorrectCount: any;
-  check: boolean;
-  setCheck: any;
   totalTime: number;
-  text: string;
+  writtenWords:string;
+  correctStore:number[];
 }) {
+
+  
+  const [i, setI] = useState<number>(0);
+
   let len = wordCount;
   let wpm = ((letterCount -1 +len) / 5) / (totalTime / 6000);
   let acc = (correctCount / len) * 100;
   let col1 = (wpm>40)? "border-green-700 text-green-700": (wpm>30)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
   let col2 = (acc>90)? "border-green-700 text-green-700": (acc>70)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
+
   return (
     <div className="w-full py-4 px-6">
       <div className="mb-10 md:text-2xl lg:text-3xl flex items-center">
-        YOUR DASHBOARD:
+        YOUR DASHBOARD:{letterCount -1 +len}
       </div>
       <div className="space-y-4">
         <div className="relative flex items-center">
@@ -68,12 +66,38 @@ export default function Dashboard({
           </span>
         </div>
         <div className="relative flex items-center">
-        incorrectly Spelled:
+        Incorrectly Spelled:
           <span
             className={`text-xl ${inCorrectCount?"border-red-700 text-red-700":"border-green-700 text-green-700"} inline-block absolute right-0 font-bold border-2 w-fit px-2`}
           >
             {inCorrectCount}
           </span>
+        </div>
+        <div className="">
+        You have wtitten:
+          <div
+            // className={`text-xl ${inCorrectCount?"border-red-700 text-red-700":"border-green-700 text-green-700"} inline-block absolute right-0 font-bold border-2 w-fit px-2`}
+          >
+            {writtenWords.split(" ").slice(1, wordCount).map((value, index) => {
+
+
+
+
+
+
+          return (
+            <span key={index}>
+              <span
+                className={` ${
+                    correctStore[index] === 1
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >{value}</span>{" "}
+            </span>
+          );
+        })}
+          </div>
         </div>
       </div>
     </div>
