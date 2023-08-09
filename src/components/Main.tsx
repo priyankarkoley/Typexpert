@@ -42,11 +42,14 @@ export default function Main({
   correctStore: number[];
   setCorrectStore: any;
 }) {
+  // useEffect(()=>{
+  //   console.log(correctStore, wordCount, totalTime);
+  // },[correctStore, wordCount, totalTime])
+
   const [i, setI] = useState<number>(0);
-  const [col, setCol] = useState<string>("");
+  const [col, setCol] = useState<string>("bg-slate-700 text-white");
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
-  // const [j, setJ] = useState<number>(0);
 
   let [tt, milliseconds, seconds, minutes, hours] = [
     totalTime,
@@ -57,12 +60,12 @@ export default function Main({
   ];
 
   const start = () => {
-    setStatus(1);
     if (status === 0) {
+      setStatus(1);
       settotalTime(0);
       tt = 0;
       run();
-      setInt(setInterval(run, 10));
+      setInt(setInterval(run, 100));
     }
   };
   const pause = () => {
@@ -79,7 +82,7 @@ export default function Main({
       seconds = 0;
       minutes++;
     }
-    if (milliseconds === 100) {
+    if (milliseconds === 10) {
       milliseconds = 0;
       seconds++;
     }
@@ -93,35 +96,47 @@ export default function Main({
   //     pause();
   //   }
   // };
-
   let checker = (word: string) => {
-    let myGivenString = TYPE_THIS;
-    if (myGivenString[i].includes(word)) setCol("text-white");
-    else setCol("text-red-300");
-    if (word === myGivenString[i]) setCol("text-green-200");
-    if (word.includes(" ")) {
-      setLetterCount(letterCount + text.length);
-      setWrittenWords(writtenWords + " " + text);
-      setText("");
-      if (word.trim() === myGivenString[i]) {
-        setCorrectCount(correctCount + 1);
-        setCorrectStore(
-          correctStore.map((value, index) => {
-            if (index == i) return 1;
-            else return value;
-          })
-        );
-      } else {
-        setInCorrectCount(inCorrectCount + 1);
-        setCorrectStore(
-          correctStore.map((value, index) => {
-            if (index == i) return 0;
-            else return value;
-          })
-        );
+    let myGivenString = TYPE_THIS.slice(0, wordCount);
+    if (status === 1) {
+      if (word.includes(" ")) {
+        setLetterCount(letterCount + text.length);
+        setWrittenWords(writtenWords + " " + text);
+        setText("");
+        if (word.trim() === myGivenString[i]) {
+          correctWordAction();
+        } else {
+          incorrectWordAction();
+        }
+        setI(i + 1);
       }
-      setI(i + 1);
-      if (i === wordCount - 1) pause();
+      if (word === myGivenString[i] + " ") word = "";
+      console.log(status,myGivenString)
+      if (myGivenString[i].includes(word)) setCol("text-white bg-slate-700");
+      else setCol("text-white bg-red-400");
+      if (word === myGivenString[i]) setCol("bg-green-400");
+    }
+    if (i === wordCount - 1 && myGivenString[i] === word) {correctWordAction();setStatus(2);pause()};
+    if (word.includes(" ")) setText('')
+
+    function incorrectWordAction() {
+      setInCorrectCount(inCorrectCount + 1);
+      setCorrectStore(
+        correctStore.map((value, index) => {
+          if (index == i) return 0;
+          else return value;
+        })
+      );
+    }
+
+    function correctWordAction() {
+      setCorrectCount(correctCount + 1);
+      setCorrectStore(
+        correctStore.map((value, index) => {
+          if (index == i) return 1;
+          else return value;
+        })
+      );
     }
   };
 
@@ -130,7 +145,7 @@ export default function Main({
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
     setText("");
-    setCol("");
+    setCol("bg-slate-700 text-white");
     setI(0);
     setCorrectStore(correctStore.map(() => -1));
     setLetterCount(0);
@@ -144,28 +159,60 @@ export default function Main({
     <div className="space-y-5 md:space-y-10 md:w-full p-6">
       <div className="text-lg">
         <button
-          onClick={() => setWordCount(10)}
+          onClick={() => {
+            setWordCount(10);
+            reset();
+            setCorrectStore(
+              Array.apply(null, Array(10)).map(function () {
+                return -1;
+              })
+            );
+          }}
           className={`${wordCount === 10 ? "underline" : ""} hover:underline`}
         >
           10
         </button>{" "}
         /{" "}
         <button
-          onClick={() => setWordCount(20)}
+          onClick={() => {
+            setWordCount(20);
+            reset();
+            setCorrectStore(
+              Array.apply(null, Array(20)).map(function () {
+                return -1;
+              })
+            );
+          }}
           className={`${wordCount === 20 ? "underline" : ""} hover:underline`}
         >
           20
         </button>{" "}
         /{" "}
         <button
-          onClick={() => setWordCount(35)}
+          onClick={() => {
+            setWordCount(35);
+            reset();
+            setCorrectStore(
+              Array.apply(null, Array(35)).map(function () {
+                return -1;
+              })
+            );
+          }}
           className={`${wordCount === 35 ? "underline" : ""} hover:underline`}
         >
           35
         </button>{" "}
         /{" "}
         <button
-          onClick={() => setWordCount(50)}
+          onClick={() => {
+            setWordCount(50);
+            reset();
+            setCorrectStore(
+              Array.apply(null, Array(50)).map(function () {
+                return -1;
+              })
+            );
+          }}
           className={`${wordCount === 50 ? "underline" : ""} hover:underline`}
         >
           50
@@ -190,16 +237,16 @@ export default function Main({
           );
         })}
       </div>
-      <textarea
-        rows={4}
+      <input
+        // rows={4}
         // placeholder="Press ENTER or SPACE to finish."
-        value={text}
-        className={`${col} p-2 w-full bg-slate-700`}
+        className={`${col} p-2 w-full rounded-md`}
         onChange={(e) => {
           start();
           setText(e.target.value);
-          checker(e.target.value);
+          checker(e.target.value == text ? "" : e.target.value);
         }}
+        value={text}
       />
       <div className="h-20">
         <Timer
