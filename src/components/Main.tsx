@@ -43,8 +43,8 @@ export default function Main({
   setCorrectStore: any;
 }) {
   // useEffect(()=>{
-  //   console.log(correctStore, wordCount, totalTime);
-  // },[correctStore, wordCount, totalTime])
+  //   console.;
+  // },[])
 
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>("bg-slate-700 text-white");
@@ -101,7 +101,7 @@ export default function Main({
     if (status === 1) {
       if (word.includes(" ")) {
         setLetterCount(letterCount + text.length);
-        setWrittenWords(writtenWords + " " + text);
+        setWrittenWords(writtenWords + word);
         setText("");
         if (word.trim() === myGivenString[i]) {
           correctWordAction();
@@ -111,13 +111,19 @@ export default function Main({
         setI(i + 1);
       }
       if (word === myGivenString[i] + " ") word = "";
-      console.log(status,myGivenString)
       if (myGivenString[i].includes(word)) setCol("text-white bg-slate-700");
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400");
     }
-    if (i === wordCount - 1 && myGivenString[i] === word) {correctWordAction();setStatus(2);pause()};
-    if (word.includes(" ")) setText('')
+    if (i === wordCount - 1 && myGivenString[i] === word) {
+      setLetterCount(letterCount + text.length);
+      setWrittenWords(writtenWords + word);
+      setText("");
+      correctWordAction();
+      setStatus(2);
+      pause();
+    }
+    if (word.includes(" ")) setText("");
 
     function incorrectWordAction() {
       setInCorrectCount(inCorrectCount + 1);

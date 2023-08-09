@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Dashboard({
   wordCount,
@@ -18,19 +18,24 @@ export default function Dashboard({
   correctStore:number[];
 }) {
 
+  useEffect(()=>{
+    // console.log(writtenWords);
+    console.log(writtenWords,wordCount,writtenWords.split(" ").slice(0, wordCount))
+  },[writtenWords])
   
   const [i, setI] = useState<number>(0);
 
   let len = wordCount;
   let wpm = ((letterCount -1 +len) / 5) / (totalTime / 600);
   let acc = (correctCount / len) * 100;
-  let col1 = (wpm>40)? "border-green-700 text-green-700": (wpm>30)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
-  let col2 = (acc>80)? "border-green-700 text-green-700": (acc>65)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
+  let col1 = (wpm>=40)? "border-green-700 text-green-700": (wpm>=30)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
+  let col2 = (acc>=80)? "border-green-700 text-green-700": (acc>=65)?"border-yellow-600 text-yellow-600":"border-red-700 text-red-700";
   return (
     <div className="w-full py-4 px-6">
       <div className="mb-10 md:text-2xl lg:text-3xl flex items-center">
         YOUR DASHBOARD:
-        {/* {letterCount -1 +len} */}
+
+        {letterCount -1 +len}
       </div>
       <div className="space-y-4">
         <div className="relative flex items-center">
@@ -78,7 +83,7 @@ export default function Dashboard({
           <div
             // className={`text-xl ${inCorrectCount?"border-red-700 text-red-700":"border-green-700 text-green-700"} inline-block absolute right-0 font-bold border-2 w-fit px-2`}
           >
-            {writtenWords.split(" ").slice(1, wordCount).map((value, index) => {
+            {writtenWords.split(" ").slice(0, wordCount).map((value, index) => {
 
 
 
