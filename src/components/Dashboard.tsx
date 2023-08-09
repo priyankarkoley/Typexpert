@@ -34,8 +34,7 @@ export default function Dashboard({
     <div className="w-full py-4 px-6">
       <div className="mb-10 md:text-2xl lg:text-3xl flex items-center">
         YOUR DASHBOARD:
-
-        {letterCount -1 +len}
+        {/* {letterCount -1 +len} */}
       </div>
       <div className="space-y-4">
         <div className="relative flex items-center">

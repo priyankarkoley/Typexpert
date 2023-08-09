@@ -17,8 +17,9 @@ export default function Timer({
     <div className="sm:flex lg:flex md:block h-10">
       <div className="block md:flex items-center justify-center lg:block w-full h-10">
         <div className="lg:flex items-center h-10 min-w-fit">
-          Your Time: {/* ${time.h < 10 ? "0" + time.h : time.h} : */}
+          Your Time:&nbsp; {/* ${time.h < 10 ? "0" + time.h : time.h} : */}
           {`
+          ${time.h==0?'':(time.h < 10 ? "0" + time.h: time.h) +':'}
 					${time.m < 10 ? "0" + time.m : time.m} :
 					${time.s < 10 ? "0" + time.s : time.s}.
 					${time.ms < 10 ? time.ms : time.ms}
@@ -98,7 +99,7 @@ export default function Timer({
       </div> */}
 
         <button
-          className="disabled:bg-stone-500  h-full bg-green-500 px-3 rounded-md"
+          className="disabled:bg-stone-500 h-full bg-green-500 px-3 rounded-md"
           onClick={() => {
             onReset();
           }}

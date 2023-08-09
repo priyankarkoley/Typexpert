@@ -1,26 +1,28 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
-import Navbar from "../components/Navbar";
+import "./globals.css";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Typexpert - Type Faster',
-  description: 'A webapp to help you in learn touchtyping & type faster. Practise typing.',
-}
+  title: "Typexpert - Type Faster",
+  description:
+    "A webapp to help you in learn touchtyping & type faster. Practise typing.",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
-        </body>
-      {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" /> */}
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+        />
+      </head>
+      <body className={inter.className}>{children}</body>
     </html>
-  )
+  );
 }
