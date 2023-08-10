@@ -225,7 +225,9 @@ export default function Main({
         </button>
       </div>
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
-        {TYPE_THIS.slice(0, wordCount).map((value, index) => {
+        {
+        // (typeof window !== 'undefined')?
+        TYPE_THIS.slice(0, wordCount).map((value, index) => {
           return (
             <span key={index}>
               <span
@@ -241,7 +243,9 @@ export default function Main({
               >{`${value}`}</span>{" "}
             </span>
           );
-        })}
+        })
+        // :'undefined'
+        }
       </div>
       <input
         // rows={4}
