@@ -17,7 +17,7 @@ export default function Footer() {
       </div>
       <Link
         href={"https://github.com/priyankarkoley/Typexpert"}
-        about="_blank"
+        target="_blank"
         className="hover:animate-bounce pt-1 absolute right-5 text-4xl"
       >
         <i className="devicon-github-original text-white"></i>
