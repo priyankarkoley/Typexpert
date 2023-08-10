@@ -17,11 +17,6 @@ export default function Dashboard({
   writtenWords:string;
   correctStore:number[];
 }) {
-
-  useEffect(()=>{
-    // console.log(writtenWords);
-    console.log(writtenWords,wordCount,writtenWords.split(" ").slice(0, wordCount))
-  },[writtenWords])
   
   const [i, setI] = useState<number>(0);
 

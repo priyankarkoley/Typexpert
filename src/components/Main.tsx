@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Timer from "./Timer";
 import { TYPE_THIS } from "./../var";
 
@@ -42,9 +42,12 @@ export default function Main({
   correctStore: number[];
   setCorrectStore: any;
 }) {
-  // useEffect(()=>{
-  //   console.;
-  // },[])
+
+  const inputElement = useRef<any>(null);
+
+  useEffect(()=>{
+    inputElement.current.focus();
+  },[wordCount,inputElement])
 
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>("bg-slate-700 text-white");
@@ -250,6 +253,8 @@ export default function Main({
       <input
         // rows={4}
         // placeholder="Press ENTER or SPACE to finish."
+        ref={inputElement}
+        autoFocus
         className={`${col} p-2 w-full rounded-md`}
         onChange={(e) => {
           start();
