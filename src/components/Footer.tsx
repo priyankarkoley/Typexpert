@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="flex sticky md:absolute bottom-0 w-full text-sm lg:text-base text-gray-400 h-11 lg:h-13 justify-center items-center text-center space-x-5">
+    <div className="bg-gray-900 flex sticky md:absolute bottom-0 w-full text-sm lg:text-base text-gray-400 h-11 lg:h-13 justify-center items-center text-center space-x-5">
       <Link
         href={"https://github.com/priyankarkoley/Typexpert"}
         target="_blank"
@@ -15,7 +15,7 @@ export default function Footer() {
         Developed by{" "}
         <Link
           target="_blank"
-          className="text-white hover:underline hover:cursor-pointer hover:text-lime-400 animate-pulse"
+          className="text-white hover:underline hover:cursor-pointer delay-1000 hover:text-lime-400 animate-pulse"
           href={"https://priyankarkoley.github.io/myspace/"}
         >
           priyankar_koley

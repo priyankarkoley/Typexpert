@@ -36,11 +36,11 @@ export default function Home() {
   return (
       <div className="h-screen w-full relative flex-col justify-center">
         <div className="absolute -z-50 bg-fixed bg-gray-900 w-full h-full">
-          <div className="hidden sm:block  opacity-90 blur-3xl rounded-full w-64 h-64 bg-violet-800 absolute top-1/2 -mt-5 left-2/3 -ml-32 animate-pulse z-10"></div>
-          <div className="hidden sm:block opacity-70 blur-3xl rounded-full w-96 h-96 bg-yellow-600 absolute top-1/2 -mt-72 left-1/2 -ml-32 animate-pulse -z-50"></div>
-          <div className="hidden sm:block opacity-90 blur-3xl rounded-full w-80 h-80 bg-red-500 absolute top-1/2 -mt-80 left-1/3 -ml-32 animate-pulse z-20"></div>
-          <div className="hidden sm:block opacity-90 blur-3xl rounded-full w-80 h-80 bg-green-600 absolute top-1/2 -mt-32 left-1/3 -ml-32 animate-pulse -z-20"></div>
-          <div className="hidden sm:block opacity-90 blur-3xl rounded-full w-40 h-44 bg-cyan-600 absolute top-1/2 -mt-96 left-2/3 -ml-12 animate-pulse -z-20"></div>
+          <div className="hidden sm:block opacity-40 blur-3xl rounded-full w-64 h-64 absolute top-1/2 -mt-10 left-2/3 -ml-32 animate-circlesm z-10 bg-violet-800"></div>
+          <div className="hidden sm:block opacity-40 blur-3xl rounded-full w-96 h-96 absolute top-1/2 -mt-72 left-1/2 -ml-32 animate-circlemd -z-50 bg-yellow-600"></div>
+          <div className="hidden sm:block opacity-40 blur-3xl rounded-full w-80 h-80 absolute top-1/2 -mt-80 left-1/3 -ml-32 animate-circlexl z-20 bg-red-500"></div>
+          <div className="hidden sm:block opacity-40 blur-3xl rounded-full w-80 h-80 absolute top-1/2 -mt-10 left-1/3 -ml-32 animate-circlesm -z-20 bg-green-600"></div>
+          <div className="hidden sm:block opacity-40 blur-3xl rounded-full w-40 h-40 absolute top-1/2 -mt-96 left-2/3 -ml-12 animate-circlexl -z-20 bg-cyan-600"></div>
         </div>
         <Navbar />
         <div className="flex justify-center sm:my-10">
