@@ -45,12 +45,12 @@ export default function Main({
 
   const inputElement = useRef<any>(null);
 
-  useEffect(()=>{
-    inputElement.current.focus();
-  },[wordCount,inputElement])
+  // useEffect(()=>{
+  //   inputElement.current.focus();
+  // },[wordCount,inputElement])
 
   const [i, setI] = useState<number>(0);
-  const [col, setCol] = useState<string>("bg-slate-700 text-white");
+  const [col, setCol] = useState<string>("bg-indigo-300 bg-opacity-30 text-white");
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
 
@@ -114,11 +114,12 @@ export default function Main({
         setI(i + 1);
       }
       if (word === myGivenString[i] + " ") word = "";
-      if (myGivenString[i].includes(word)) setCol("text-white bg-slate-700");
+      if (myGivenString[i].includes(word)) setCol("text-white bg-indigo-300 bg-opacity-30");
       else setCol("text-white bg-red-400");
-      if (word === myGivenString[i]) setCol("bg-green-400");
+      if (word === myGivenString[i]) setCol("bg-green-400 text-black");
     }
     if (i === wordCount - 1 && myGivenString[i] === word) {
+      setCol("bg-indigo-300 bg-opacity-30 text-white");
       setLetterCount(letterCount + text.length);
       setWrittenWords(writtenWords + word);
       setText("");
@@ -154,7 +155,7 @@ export default function Main({
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
     setText("");
-    setCol("bg-slate-700 text-white");
+    setCol("bg-indigo-300 bg-opacity-30 text-white");
     setI(0);
     setCorrectStore(correctStore.map(() => -1));
     setLetterCount(0);
@@ -162,6 +163,7 @@ export default function Main({
     setInCorrectCount(0);
     settotalTime(0);
     setWrittenWords("");
+    inputElement.current.focus();
   };
 
   return (
@@ -238,7 +240,7 @@ export default function Main({
                   i === index ? "border-b-2 border-green-500" : ""
                 } ${
                   correctStore[index] === -1
-                    ? "text-black"
+                    ? "text-white"
                     : correctStore[index] === 1
                     ? "text-green-500"
                     : "text-red-500"
