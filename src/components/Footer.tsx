@@ -11,7 +11,7 @@ export default function Footer() {
       >
         <i className="devicon-github-original text-white"></i>
       </Link>
-      <div className="w-fit font-thin">
+      <div className="w-fit">
         Developed by{" "}
         <Link
           target="_blank"
