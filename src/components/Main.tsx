@@ -42,7 +42,6 @@ export default function Main({
   correctStore: number[];
   setCorrectStore: any;
 }) {
-
   const inputElement = useRef<any>(null);
 
   // useEffect(()=>{
@@ -50,7 +49,9 @@ export default function Main({
   // },[wordCount,inputElement])
 
   const [i, setI] = useState<number>(0);
-  const [col, setCol] = useState<string>("bg-indigo-300 bg-opacity-30 text-white");
+  const [col, setCol] = useState<string>(
+    "bg-indigo-300 bg-opacity-30 text-white"
+  );
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
 
@@ -114,7 +115,8 @@ export default function Main({
         setI(i + 1);
       }
       if (word === myGivenString[i] + " ") word = "";
-      if (myGivenString[i].includes(word)) setCol("text-white bg-indigo-300 bg-opacity-30");
+      if (myGivenString[i].includes(word))
+        setCol("text-white bg-indigo-300 bg-opacity-30");
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
     }
@@ -231,25 +233,25 @@ export default function Main({
       </div>
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
         {
-        // (typeof window !== 'undefined')?
-        TYPE_THIS.slice(0, wordCount).map((value, index) => {
-          return (
-            <span key={index}>
-              <span
-                className={`${
-                  i === index ? "border-b-2 border-green-500" : ""
-                } ${
-                  correctStore[index] === -1
-                    ? "text-white"
-                    : correctStore[index] === 1
-                    ? "text-green-500"
-                    : "text-red-500"
-                }`}
-              >{`${value}`}</span>{" "}
-            </span>
-          );
-        })
-        // :'undefined'
+          // (typeof window !== 'undefined')?
+          TYPE_THIS.slice(0, wordCount).map((value, index) => {
+            return (
+              <span key={index}>
+                <span
+                  className={`${
+                    i === index ? "border-b-2 border-green-500" : ""
+                  } ${
+                    correctStore[index] === -1
+                      ? "text-white"
+                      : correctStore[index] === 1
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >{`${value}`}</span>{" "}
+              </span>
+            );
+          })
+          // :'undefined'
         }
       </div>
       <input
@@ -257,7 +259,7 @@ export default function Main({
         // placeholder="Press ENTER or SPACE to finish."
         ref={inputElement}
         autoFocus
-        className={`${col} p-2 w-full rounded-md`}
+        className={`${col} p-2 w-full rounded-md caret-neutral-50`}
         onChange={(e) => {
           start();
           setText(e.target.value);
