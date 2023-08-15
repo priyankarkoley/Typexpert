@@ -55,6 +55,8 @@ export default function Main({
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
 
+  let myGivenString = TYPE_THIS.slice(0, wordCount);
+
   let [tt, milliseconds, seconds, minutes, hours] = [
     totalTime,
     time.ms,
@@ -101,7 +103,6 @@ export default function Main({
   //   }
   // };
   let checker = (word: string) => {
-    let myGivenString = TYPE_THIS.slice(0, wordCount);
     if (status === 1) {
       if (word.includes(" ")) {
         setLetterCount(letterCount + text.length);
@@ -115,7 +116,7 @@ export default function Main({
         setI(i + 1);
       }
       if (word === myGivenString[i] + " ") word = "";
-      if (myGivenString[i].includes(word))
+      if (myGivenString!==undefined && myGivenString[i].includes(word))
         setCol("text-white bg-indigo-300 bg-opacity-30");
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
@@ -169,7 +170,7 @@ export default function Main({
   };
 
   return (
-    <div className="space-y-5 md:space-y-10 md:w-full p-6">
+    <div className="space-y-5 md:space-y-10 md:w-full p-">
       <div className="text-lg">
         <button
           onClick={() => {
@@ -267,7 +268,7 @@ export default function Main({
         }}
         value={text}
       />
-      <div className="h-20">
+      <div className="py-2">
         <Timer
           time={time}
           onStart={start}
