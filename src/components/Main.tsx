@@ -268,7 +268,7 @@ export default function Main({
         }}
         value={text}
       />
-      <div className="py-2">
+      <div className="">
         <Timer
           time={time}
           onStart={start}
