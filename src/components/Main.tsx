@@ -170,7 +170,7 @@ export default function Main({
   };
 
   return (
-    <div className="space-y-5 md:space-y-10 md:w-full p-">
+    <div className="space-y-5 md:space-y-10 md:w-full p-6">
       <div className="text-lg">
         <button
           onClick={() => {
