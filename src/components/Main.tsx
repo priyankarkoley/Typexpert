@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Timer from "./Timer";
-import { TYPE_THIS } from "./../var";
+import { _TYPE_THIS } from "./../var";
 
 export default function Main({
   wordCount,
@@ -48,12 +48,14 @@ export default function Main({
   //   inputElement.current.focus();
   // },[wordCount,inputElement])
 
+  const [TYPE_THIS, setTYPE_THIS] = useState(_TYPE_THIS);
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>(
     "bg-indigo-300 bg-opacity-30 text-white"
   );
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
+  const [punc, setPunc] = useState<boolean>(false);
 
   let myGivenString = TYPE_THIS.slice(0, wordCount);
 
@@ -116,7 +118,7 @@ export default function Main({
         setI(i + 1);
       }
       if (word === myGivenString[i] + " ") word = "";
-      if (myGivenString!==undefined && myGivenString[i].includes(word))
+      if (myGivenString !== undefined && myGivenString[i].includes(word))
         setCol("text-white bg-indigo-300 bg-opacity-30");
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
@@ -131,7 +133,6 @@ export default function Main({
       pause();
     }
     if (word.includes(" ")) setText("");
-
     function incorrectWordAction() {
       setInCorrectCount(inCorrectCount + 1);
       setCorrectStore(
@@ -152,8 +153,36 @@ export default function Main({
       );
     }
   };
+  const addPunctutaion = () => {
+    setTYPE_THIS((prev: string[]): string[] => {
+      return prev.map((val, i): string => {
+        const ran = Math.random();
+        if (ran < 0.09) {
+          return val + ",";
+        } else if (ran < 0.15) {
+          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          return val + ".";
+        } else if (ran < 0.18) {
+          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          return val + "?";
+        } else if (ran < 0.21) {
+          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          return val + "!";
+        } else if(ran < 0.24){
+          return val + ".";
+        }
+        else return val;
+      });
+    });
+  }
+
+  const removePunctutaion = () => {
+    setTYPE_THIS(_TYPE_THIS);
+  };
 
   const reset = () => {
+    //----------------------------------------------------------------
+    // console.log(TYPE_THIS);
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
@@ -171,67 +200,81 @@ export default function Main({
 
   return (
     <div className="space-y-5 md:space-y-10 md:w-full p-6">
-      <div className="text-lg">
+      <div className="flex">
+        <div className="text-lg">
+          <button
+            onClick={() => {
+              setWordCount(10);
+              reset();
+              setCorrectStore(
+                Array.apply(null, Array(10)).map(function () {
+                  return -1;
+                })
+              );
+            }}
+            className={`${wordCount === 10 ? "underline" : ""} hover:underline`}
+          >
+            10
+          </button>{" "}
+          /{" "}
+          <button
+            onClick={() => {
+              setWordCount(20);
+              reset();
+              setCorrectStore(
+                Array.apply(null, Array(20)).map(function () {
+                  return -1;
+                })
+              );
+            }}
+            className={`${wordCount === 20 ? "underline" : ""} hover:underline`}
+          >
+            20
+          </button>{" "}
+          /{" "}
+          <button
+            onClick={() => {
+              setWordCount(35);
+              reset();
+              setCorrectStore(
+                Array.apply(null, Array(35)).map(function () {
+                  return -1;
+                })
+              );
+            }}
+            className={`${wordCount === 35 ? "underline" : ""} hover:underline`}
+          >
+            35
+          </button>{" "}
+          /{" "}
+          <button
+            onClick={() => {
+              setWordCount(50);
+              reset();
+              setCorrectStore(
+                Array.apply(null, Array(50)).map(function () {
+                  return -1;
+                })
+              );
+            }}
+            className={`${wordCount === 50 ? "underline" : ""} hover:underline`}
+          >
+            50
+          </button>
+        </div>
         <button
+          className="ml-auto"
           onClick={() => {
-            setWordCount(10);
+            setPunc(!punc);
+            if (!punc) addPunctutaion();
+            else removePunctutaion();
             reset();
-            setCorrectStore(
-              Array.apply(null, Array(10)).map(function () {
-                return -1;
-              })
-            );
           }}
-          className={`${wordCount === 10 ? "underline" : ""} hover:underline`}
         >
-          10
-        </button>{" "}
-        /{" "}
-        <button
-          onClick={() => {
-            setWordCount(20);
-            reset();
-            setCorrectStore(
-              Array.apply(null, Array(20)).map(function () {
-                return -1;
-              })
-            );
-          }}
-          className={`${wordCount === 20 ? "underline" : ""} hover:underline`}
-        >
-          20
-        </button>{" "}
-        /{" "}
-        <button
-          onClick={() => {
-            setWordCount(35);
-            reset();
-            setCorrectStore(
-              Array.apply(null, Array(35)).map(function () {
-                return -1;
-              })
-            );
-          }}
-          className={`${wordCount === 35 ? "underline" : ""} hover:underline`}
-        >
-          35
-        </button>{" "}
-        /{" "}
-        <button
-          onClick={() => {
-            setWordCount(50);
-            reset();
-            setCorrectStore(
-              Array.apply(null, Array(50)).map(function () {
-                return -1;
-              })
-            );
-          }}
-          className={`${wordCount === 50 ? "underline" : ""} hover:underline`}
-        >
-          50
+          Punctuation : <span>{`${punc ? "ON" : "OFF"}`}</span>
         </button>
       </div>
+
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
         {
           // (typeof window !== 'undefined')?

@@ -36,12 +36,12 @@ module.exports = {
         },
         circlemd: {
           "0%": { transform: "rotate(0deg) translateY(40px) rotate(0deg) scale(0.8)"},
-          "50%": {transform: "rotate(318deg) translateY(40px) rotate(-180deg) scale(1.2)"},
+          "50%": {transform: "rotate(180deg) translateY(40px) rotate(-180deg) scale(1.2)"},
           "100%": {transform: "rotate(360deg) translateY(40px) rotate(-360deg) scale(0.8)"}
         },
         circlelg: {
           "0%": { transform: "rotate(0deg) translateY(70px) rotate(0deg) scale(0.8)"},
-          "50%": {transform: "rotate(318deg) translateY(70px) rotate(-180deg) scale(1.2)"},
+          "50%": {transform: "rotate(180deg) translateY(70px) rotate(-180deg) scale(1.2)"},
           "100%": {transform: "rotate(360deg) translateY(70px) rotate(-360deg) scale(0.8)"}
         },
         circlexl: {
