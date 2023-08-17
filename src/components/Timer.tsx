@@ -15,7 +15,7 @@ export default function Timer({
 }) {
   return (
     <div className="flex h-7 sm:h-10 space-x-2">
-      <div className="flex flex-wrap items-center lg:block w-full">
+      <div className="flex flex-wrap items-center w-full">
           Your Time:&nbsp;  
           <div>{`
           ${time.h == 0 ? "" : (time.h < 10 ? "0" + time.h : time.h) + ":"}
