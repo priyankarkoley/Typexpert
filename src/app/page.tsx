@@ -45,7 +45,7 @@ export default function Home() {
 
   return (
     <div className="md:h-screen w-full relative flex-col justify-center">
-      <div className="absolute -z-50 bg-fixed bg-gray-900 w-full h-full overflow-hidden">
+      <div className="absolute -z-50 bg-fixed bg-gray-900 w-full h-full">
         <div className="opacity-40 blur-xl rounded-full w-44 h-44 sm:w-64 sm:h-64 absolute top-1/2 -mt-10 left-2/3 -ml-32 animate-circlesm z-10 bg-violet-800"></div>
         <div className="opacity-40 blur-xl rounded-full w-64 h-64 sm:w-96 sm:h-96 absolute top-1/2 -mt-72 left-1/2 -ml-10 animate-circlemd -z-50 bg-yellow-600"></div>
         <div className="opacity-40 blur-xl rounded-full w-52 h-52 sm:w-80 sm:h-80 absolute top-1/2 -mt-80 left-1/3 -ml-32 animate-circlexl z-20 bg-red-500"></div>
@@ -54,8 +54,8 @@ export default function Home() {
       </div>
       <Navbar />
       <div className="flex justify-center items-center overflow-y-auto">
-        <div className="bg-red-8000 max-w-5xl p-10 sm:inline-block md:flex space-y-8 md:space-y-0 md:space-x-7">
-          <div className="bg-green-100 bg-opacity-10 text-white md:w-3/5 rounded-lg lg:p-4">
+        <div className="bg-red-8000 max-w-5xl p-7 sm:p-10 sm:inline-block md:flex space-y-8 md:space-y-0 md:space-x-7">
+          <div className="bg-green-100 bg-opacity-10 text-white md:w-3/5 rounded-lg lg:p-4 shadow-lg">
             <Main
               wordCount={wordCount}
               setWordCount={setWordCount}

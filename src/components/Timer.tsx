@@ -14,19 +14,16 @@ export default function Timer({
   status: number;
 }) {
   return (
-    <div className="sm:flex lg:flex md:block h-10">
-      <div className="block md:flex items-center justify-center lg:block w-full h-10">
-        <div className="lg:flex items-center h-10 min-w-fit">
-          Your Time:&nbsp; {/* ${time.h < 10 ? "0" + time.h : time.h} : */}
-          {`
+    <div className="flex h-7 sm:h-10 space-x-2">
+      <div className="flex flex-wrap items-center lg:block w-full">
+          Your Time:&nbsp;  
+          <div>{`
           ${time.h == 0 ? "" : (time.h < 10 ? "0" + time.h : time.h) + ":"}
 					${time.m < 10 ? "0" + time.m : time.m} :
 					${time.s < 10 ? "0" + time.s : time.s}.
 					${time.ms < 10 ? time.ms : time.ms}
-				`}
-        </div>
+				`}</div>
       </div>
-      <div className="block md:flex items-center justify-center lg:block min-w-fit">
 
         <button
           className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider h-full bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 pt-1 px-3 rounded-md"
@@ -37,7 +34,6 @@ export default function Timer({
           RESET
         </button>
       </div>
-    </div>
   );
 }
 
