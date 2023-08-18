@@ -99,11 +99,7 @@ export default function Main({
     settotalTime(tt);
     return setTime({ ms: milliseconds, s: seconds, m: minutes, h: hours });
   };
-  // let finisher = () => {
-  //   if (text === MyString) {
-  //     pause();
-  //   }
-  // };
+  
   let checker = (word: string) => {
     if (status === 1) {
       if (word.includes(" ")) {
@@ -155,21 +151,21 @@ export default function Main({
   };
   const addPunctutaion = () => {
     setTYPE_THIS((prev: string[]): string[] => {
-      return prev.map((val, i): string => {
+      return prev.map((val, i, prevArr): string => {
         const ran = Math.random();
         if (ran < 0.09) {
           return val + ",";
         } else if (ran < 0.15) {
-          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
           return val + ".";
         } else if (ran < 0.18) {
-          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
           return val + "?";
         } else if (ran < 0.21) {
-          //prev[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
           return val + "!";
         } else if(ran < 0.24){
-          return val + ".";
+          return val + ";";
         }
         else return val;
       });
