@@ -81,9 +81,7 @@ export default function Dashboard({
         </div>
         <div className="">
           You have written:
-          <div
-          // className={`text-xl ${inCorrectCount?"border-rose-600 text-rose-600":"border-green-500 text-green-500"} inline-block absolute right-0 font-bold border-2 w-fit px-2`}
-          >
+          <div>
             {writtenWords
               .split(" ")
               .slice(0, wordCount)
