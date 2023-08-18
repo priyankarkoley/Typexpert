@@ -154,13 +154,13 @@ export default function Main({
           if (ran < 0.01 * fac) {
             return val + ",";
           } else if (ran < 0.02 * fac) {
-            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
             return val + ".";
           } else if (ran < 0.03 * fac) {
-            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
             return val + "?";
           } else if (ran < 0.04 * fac) {
-            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
             return val + "!";
           } else if (ran < 0.05 * fac) {
             return val + ";";
