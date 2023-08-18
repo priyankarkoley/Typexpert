@@ -99,7 +99,7 @@ export default function Main({
     settotalTime(tt);
     return setTime({ ms: milliseconds, s: seconds, m: minutes, h: hours });
   };
-  
+
   let checker = (word: string) => {
     if (status === 1) {
       if (word.includes(" ")) {
@@ -151,26 +151,30 @@ export default function Main({
   };
   const addPunctutaion = () => {
     setTYPE_THIS((prev: string[]): string[] => {
-      return prev.map((val, i, prevArr): string => {
-        const ran = Math.random();
-        if (ran < 0.09) {
-          return val + ",";
-        } else if (ran < 0.15) {
-          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
+      return prev.map((val, i, pre): string => {
+        if (i == wordCount - 1) {
           return val + ".";
-        } else if (ran < 0.18) {
-          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
-          return val + "?";
-        } else if (ran < 0.21) {
-          prevArr[i + 1] = prev[i + 1][0].toUpperCase() + prev[i + 1].slice(1);
-          return val + "!";
-        } else if(ran < 0.24){
-          return val + ";";
+        } else {
+          const fac = 4;
+          const ran = Math.random();
+          if (ran < 0.01 * fac) {
+            return val + ",";
+          } else if (ran < 0.02 * fac) {
+            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            return val + ".";
+          } else if (ran < 0.03 * fac) {
+            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            return val + "?";
+          } else if (ran < 0.04 * fac) {
+            pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            return val + "!";
+          } else if (ran < 0.05 * fac) {
+            return val + ";";
+          } else return val;
         }
-        else return val;
       });
     });
-  }
+  };
 
   const removePunctutaion = () => {
     setTYPE_THIS(_TYPE_THIS);
@@ -267,7 +271,7 @@ export default function Main({
             reset();
           }}
         >
-          Punctuation : <span>{`${punc ? "ON" : "OFF"}`}</span>
+          Punctuation : <span>{`${punc ? "ON!" : "OFF"}`}</span>
         </button>
       </div>
 
@@ -299,7 +303,7 @@ export default function Main({
         // placeholder="Press ENTER or SPACE to finish."
         ref={inputElement}
         autoFocus
-        className={`${col} p-2 w-full rounded-md caret-neutral-50`}
+        className={`${col} p-2 w-full rounded-md`}
         onChange={(e) => {
           start();
           setText(e.target.value);

@@ -15,7 +15,7 @@ function shuffle(array: string[]) {
     ];
   }
   array[0] = array[0][0].toUpperCase() + array[0].slice(1);
-  return array;
+  return array.slice(0,50);
 }
 
 export let _TYPE_THIS = 
