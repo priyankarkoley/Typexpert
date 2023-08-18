@@ -145,8 +145,8 @@ export default function Main({
   };
   const addPunctutaion = () => {
     setTYPE_THIS((prev: string[]): string[] => {
-      return prev.map((val, i, pre): string => {
-        if (i == wordCount - 1) {
+      return prev.map((val, index, pre): string => {
+        if (index == wordCount - 1) {
           return val + ".";
         } else {
           const fac = 4;
@@ -154,13 +154,13 @@ export default function Main({
           if (ran < 0.01 * fac) {
             return val + ",";
           } else if (ran < 0.02 * fac) {
-            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
             return val + ".";
           } else if (ran < 0.03 * fac) {
-            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
             return val + "?";
           } else if (ran < 0.04 * fac) {
-            if(pre[i+1])pre[i + 1] = pre[i + 1][0].toUpperCase() + pre[i + 1].slice(1);
+            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
             return val + "!";
           } else if (ran < 0.05 * fac) {
             return val + ";";
