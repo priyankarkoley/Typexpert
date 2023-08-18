@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Timer from "./Timer";
 import { _TYPE_THIS } from "./../var";
 
@@ -43,22 +43,14 @@ export default function Main({
   setCorrectStore: any;
 }) {
   const inputElement = useRef<any>(null);
-
-  // useEffect(()=>{
-  //   inputElement.current.focus();
-  // },[wordCount,inputElement])
-
   const [TYPE_THIS, setTYPE_THIS] = useState(_TYPE_THIS);
   const [i, setI] = useState<number>(0);
-  const [col, setCol] = useState<string>(
-    "bg-indigo-300 bg-opacity-30 text-white"
-  );
+  const [col, setCol] = useState<string>("bg-indigo-300 bg-opacity-30 text-white");
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   const [punc, setPunc] = useState<boolean>(false);
 
-  let myGivenString = TYPE_THIS.slice(0, wordCount);
-
+  let myGivenString = TYPE_THIS;
   let [tt, milliseconds, seconds, minutes, hours] = [
     totalTime,
     time.ms,
@@ -77,8 +69,11 @@ export default function Main({
     }
   };
   const pause = () => {
-    setStatus(2);
     clearInterval(int);
+    setStatus(2);
+    setCol("bg-indigo-300 bg-opacity-30 text-white");
+    setLetterCount(letterCount + text.length);
+    setText("");
   };
 
   const run = () => {
@@ -99,8 +94,25 @@ export default function Main({
     settotalTime(tt);
     return setTime({ ms: milliseconds, s: seconds, m: minutes, h: hours });
   };
-
   let checker = (word: string) => {
+    function incorrectWordAction() {
+      setInCorrectCount(inCorrectCount + 1);
+      setCorrectStore(
+        correctStore.map((value, index) => {
+          if (index == i) return 0;
+          else return value;
+        })
+      );
+    }
+    function correctWordAction() {
+      setCorrectCount(correctCount + 1);
+      setCorrectStore(
+        correctStore.map((value, index) => {
+          if (index == i) return 1;
+          else return value;
+        })
+      );
+    }
     if (status === 1) {
       if (word.includes(" ")) {
         setLetterCount(letterCount + text.length);
@@ -119,35 +131,17 @@ export default function Main({
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
     }
-    if (i === wordCount - 1 && myGivenString[i] === word) {
-      setCol("bg-indigo-300 bg-opacity-30 text-white");
-      setLetterCount(letterCount + text.length);
+    if (i === wordCount - 1 && (myGivenString[i] === word||word.includes(" "))) {
       setWrittenWords(writtenWords + word);
-      setText("");
-      correctWordAction();
-      setStatus(2);
+      setI(i+1);
+      if (word.trim() === myGivenString[i]) {
+        correctWordAction();
+      } else {
+        incorrectWordAction();
+      }
       pause();
     }
     if (word.includes(" ")) setText("");
-    function incorrectWordAction() {
-      setInCorrectCount(inCorrectCount + 1);
-      setCorrectStore(
-        correctStore.map((value, index) => {
-          if (index == i) return 0;
-          else return value;
-        })
-      );
-    }
-
-    function correctWordAction() {
-      setCorrectCount(correctCount + 1);
-      setCorrectStore(
-        correctStore.map((value, index) => {
-          if (index == i) return 1;
-          else return value;
-        })
-      );
-    }
   };
   const addPunctutaion = () => {
     setTYPE_THIS((prev: string[]): string[] => {
@@ -181,8 +175,6 @@ export default function Main({
   };
 
   const reset = () => {
-    //----------------------------------------------------------------
-    // console.log(TYPE_THIS);
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
@@ -277,7 +269,6 @@ export default function Main({
 
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
         {
-          // (typeof window !== 'undefined')?
           TYPE_THIS.slice(0, wordCount).map((value, index) => {
             return (
               <span key={index}>
@@ -295,12 +286,9 @@ export default function Main({
               </span>
             );
           })
-          // :'undefined'
         }
       </div>
       <input
-        // rows={4}
-        // placeholder="Press ENTER or SPACE to finish."
         ref={inputElement}
         autoFocus
         className={`${col} p-2 w-full rounded-md`}
@@ -314,10 +302,7 @@ export default function Main({
       <div className="">
         <Timer
           time={time}
-          onStart={start}
-          onPause={pause}
           onReset={reset}
-          status={status}
         />
       </div>
     </div>

@@ -1,17 +1,10 @@
 import React from "react";
-
 export default function Timer({
   time,
-  onStart,
-  onPause,
   onReset,
-  status,
 }: {
   time: { ms: number; s: number; m: number; h: number };
-  onStart: any;
-  onPause: any;
   onReset: any;
-  status: number;
 }) {
   return (
     <div className="flex h-7 sm:h-10 space-x-2">
