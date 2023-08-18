@@ -43,7 +43,8 @@ export default function Main({
   setCorrectStore: any;
 }) {
   const inputElement = useRef<any>(null);
-  const [TYPE_THIS, setTYPE_THIS] = useState(_TYPE_THIS);
+  const wrodsList = [..._TYPE_THIS]
+  const [TYPE_THIS, setTYPE_THIS] = useState([..._TYPE_THIS]);
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>("bg-indigo-300 bg-opacity-30 text-white");
   const [int, setInt] = useState<NodeJS.Timer>();
@@ -168,10 +169,11 @@ export default function Main({
         }
       });
     });
+    console.log(wrodsList);
   };
 
   const removePunctutaion = () => {
-    setTYPE_THIS(_TYPE_THIS);
+    setTYPE_THIS(wrodsList);
   };
 
   const reset = () => {
