@@ -35,7 +35,8 @@ export default function Home() {
   const [writtenWords, setWrittenWords] = useState<string>("");
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
   const [totalTime, settotalTime] = useState(0);
-
+  let wpm = (letterCount - 1 + wordCount) / 5 / (totalTime / 600);
+  let acc = (correctCount / wordCount) * 100;
   const [correctStore, setCorrectStore] = useState<Array<number>>(
     Array.apply(null, Array(wordCount)).map(function () {
       return -1;
@@ -57,6 +58,8 @@ export default function Home() {
           <div className="bg-green-100 bg-opacity-10 text-white md:w-3/5 rounded-lg lg:p-4 shadow-lg">
             <Main
               wordCount={wordCount}
+              wpm={wpm}
+              acc={acc}
               setWordCount={setWordCount}
               letterCount={letterCount}
               setLetterCount={setLetterCount}
@@ -79,6 +82,8 @@ export default function Home() {
           <div className="bg-green-100 bg-opacity-10 text-white md:w-2/5 rounded-lg lg:p-4 shadow-lg">
             <Dashboard
               wordCount={wordCount}
+              wpm={wpm}
+              acc={acc}
               letterCount={letterCount}
               correctCount={correctCount}
               inCorrectCount={inCorrectCount}

@@ -2,6 +2,8 @@ import React from "react";
 
 export default function Dashboard({
   wordCount,
+  wpm,
+  acc,
   letterCount,
   correctCount,
   inCorrectCount,
@@ -10,6 +12,8 @@ export default function Dashboard({
   correctStore,
 }: {
   wordCount: number;
+  wpm: number;
+  acc: number;
   letterCount: number;
   correctCount: number;
   inCorrectCount: number;
@@ -17,9 +21,6 @@ export default function Dashboard({
   writtenWords: string;
   correctStore: number[];
 }) {
-  let len = wordCount;
-  let wpm = (letterCount - 1 + len) / 5 / (totalTime / 600);
-  let acc = (correctCount / len) * 100;
   let col1 =
     wpm >= 40
       ? "border-green-500 text-green-500"
@@ -36,7 +37,7 @@ export default function Dashboard({
     <div className="w-full py-4 px-6">
       <div className="mb-10 md:text-2xl lg:text-3xl flex items-center">
         YOUR DASHBOARD:
-        {/* {letterCount -1 +len} */}
+        {/* {letterCount -1 +wordCount} */}
       </div>
       <div className="space-y-4">
         <div className="relative flex items-center">
@@ -58,7 +59,7 @@ export default function Dashboard({
         <div className="relative flex items-center">
           Total Words:
           <span className="text-xl border-green-500 text-green-500 inline-block absolute right-0 font-bold border-2 w-fit px-2">
-            {len}
+            {wordCount}
           </span>
         </div>
         <div className="relative flex items-center">
