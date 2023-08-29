@@ -1,10 +1,12 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Timer from "./Timer";
 import { _TYPE_THIS } from "./../var";
 
 export default function Main({
   wordCount,
+  wpm,
+  acc,
   setWordCount,
   letterCount,
   setLetterCount,
@@ -24,6 +26,8 @@ export default function Main({
   setCorrectStore,
 }: {
   wordCount: number;
+  wpm: number;
+  acc: number;
   setWordCount: any;
   letterCount: number;
   setLetterCount: any;
@@ -43,14 +47,22 @@ export default function Main({
   setCorrectStore: any;
 }) {
   const inputElement = useRef<any>(null);
-  const wrodsList = [..._TYPE_THIS]
+  const wrodsList = [..._TYPE_THIS];
   const [TYPE_THIS, setTYPE_THIS] = useState([..._TYPE_THIS]);
   const [i, setI] = useState<number>(0);
-  const [col, setCol] = useState<string>("bg-indigo-300 bg-opacity-30 text-white");
+  const [col, setCol] = useState<string>(
+    "bg-indigo-300 bg-opacity-30 text-white"
+  );
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   const [punc, setPunc] = useState<boolean>(false);
-
+  const [data, setData] = useState<object[]>(
+    JSON.parse(localStorage.getItem("data") || "{}")
+  );
+  useEffect(() => {
+    console.log(data);
+    if (data) localStorage.setItem("data", JSON.stringify(data));
+  }, [data]);
   let myGivenString = TYPE_THIS;
   let [tt, milliseconds, seconds, minutes, hours] = [
     totalTime,
@@ -75,6 +87,32 @@ export default function Main({
     setCol("bg-indigo-300 bg-opacity-30 text-white");
     setLetterCount(letterCount + text.length);
     setText("");
+    setData((prev) => {
+      let today = new Date();
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      let date =
+        today.getDate() +
+        "th" +
+        monthNames[today.getMonth()] +
+        " " +
+        today.getFullYear().toString().slice(-2);
+      let time = today.getHours() + ":" + today.getMinutes();
+      let dateTime = time + "\n" + date;
+      return [...prev, { dateTime, wpm, acc }];
+    });
   };
 
   const run = () => {
@@ -132,9 +170,12 @@ export default function Main({
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
     }
-    if (i === wordCount - 1 && (myGivenString[i] === word||word.includes(" "))) {
+    if (
+      i === wordCount - 1 &&
+      (myGivenString[i] === word || word.includes(" "))
+    ) {
       setWrittenWords(writtenWords + word);
-      setI(i+1);
+      setI(i + 1);
       if (word.trim() === myGivenString[i]) {
         correctWordAction();
       } else {
@@ -155,13 +196,22 @@ export default function Main({
           if (ran < 0.01 * fac) {
             return val + ",";
           } else if (ran < 0.02 * fac) {
-            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
+            if (pre[index + 1]) {
+              pre[index + 1] =
+                pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);
+            }
             return val + ".";
           } else if (ran < 0.03 * fac) {
-            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
+            if (pre[index + 1]) {
+              pre[index + 1] =
+                pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);
+            }
             return val + "?";
           } else if (ran < 0.04 * fac) {
-            if(pre[index+1]){pre[index + 1] = pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);}
+            if (pre[index + 1]) {
+              pre[index + 1] =
+                pre[index + 1][0].toUpperCase() + pre[index + 1].slice(1);
+            }
             return val + "!";
           } else if (ran < 0.05 * fac) {
             return val + ";";
@@ -270,25 +320,23 @@ export default function Main({
       </div>
 
       <div className="w-full text-justify text-sm md:text-base lg:text-lg">
-        {
-          TYPE_THIS.slice(0, wordCount).map((value, index) => {
-            return (
-              <span key={index}>
-                <span
-                  className={`${
-                    i === index ? "border-b-2 border-green-500" : ""
-                  } ${
-                    correctStore[index] === -1
-                      ? "text-white"
-                      : correctStore[index] === 1
-                      ? "text-green-500"
-                      : "text-red-500"
-                  }`}
-                >{`${value}`}</span>{" "}
-              </span>
-            );
-          })
-        }
+        {TYPE_THIS.slice(0, wordCount).map((value, index) => {
+          return (
+            <span key={index}>
+              <span
+                className={`${
+                  i === index ? "border-b-2 border-green-500" : ""
+                } ${
+                  correctStore[index] === -1
+                    ? "text-white"
+                    : correctStore[index] === 1
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >{`${value}`}</span>{" "}
+            </span>
+          );
+        })}
       </div>
       <input
         ref={inputElement}
@@ -302,10 +350,7 @@ export default function Main({
         value={text}
       />
       <div className="">
-        <Timer
-          time={time}
-          onReset={reset}
-        />
+        <Timer time={time} onReset={reset} />
       </div>
     </div>
   );
