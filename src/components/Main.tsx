@@ -56,11 +56,15 @@ export default function Main({
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
   const [punc, setPunc] = useState<boolean>(false);
+
+  //LOOK HERE :: DATA & SETDATA DECLARATION
   const [data, setData] = useState<object[]>(
-    JSON.parse(localStorage.getItem("data") || "{}")
+    JSON.parse(localStorage.getItem("data") || "[]")
   );
+  // if(localStorage.getItem("data"))console.log(JSON.parse('[{"hello":"world"}]'));
+
   useEffect(() => {
-    console.log(data);
+    console.log("data Changed: ", data);
     if (data) localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
   let myGivenString = TYPE_THIS;
@@ -87,7 +91,7 @@ export default function Main({
     setCol("bg-indigo-300 bg-opacity-30 text-white");
     setLetterCount(letterCount + text.length);
     setText("");
-    setData((prev) => {
+    setData(() => {
       let today = new Date();
       const monthNames = [
         "Jan",
@@ -109,9 +113,32 @@ export default function Main({
         monthNames[today.getMonth()] +
         " " +
         today.getFullYear().toString().slice(-2);
-      let time = today.getHours() + ":" + today.getMinutes();
-      let dateTime = time + "\n" + date;
-      return [...prev, { dateTime, wpm, acc }];
+      let _hr =
+        today.getHours() < 12 ? today.getHours() : today.getHours() - 12;
+      let hr = _hr < 10 ? "0" + _hr : _hr;
+      let min =
+        today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
+        let time = hr + ":" + min + (today.getHours() < 12 ? " AM" : " PM");
+        let dateTime = time + "\n" + date;
+        
+      // console.log(hr + ":" + min);
+      // console.log("text", text);
+      // console.log("lc: " + (letterCount + text.length + wordCount));
+      // console.log(
+      //   "wpm",
+      //   (letterCount + text.length + wordCount) / 5 / (totalTime / 600)
+      // );
+      // console.log("CC", correctCount);
+      // console.log("acc", (correctCount / wordCount) * 100);
+
+      return [
+        ...data,
+        {
+          dateTime,
+          wpm: (letterCount + text.length + wordCount) / 5 / (totalTime / 600),
+          acc: (correctCount / wordCount) * 100,
+        },
+      ];
     });
   };
 
@@ -135,23 +162,24 @@ export default function Main({
   };
   let checker = (word: string) => {
     function incorrectWordAction() {
-      setInCorrectCount(inCorrectCount + 1);
-      setCorrectStore(
-        correctStore.map((value, index) => {
+      setInCorrectCount((prev: number) => prev + 1);
+      setCorrectStore((prev: number[]) => {
+        return prev.map((value, index) => {
           if (index == i) return 0;
           else return value;
-        })
-      );
+        });
+      });
     }
     function correctWordAction() {
-      setCorrectCount(correctCount + 1);
-      setCorrectStore(
-        correctStore.map((value, index) => {
+      setCorrectCount((prev: number) => prev + 1);
+      setCorrectStore((prev: number[]) => {
+        return prev.map((value, index) => {
           if (index == i) return 1;
           else return value;
-        })
-      );
+        });
+      });
     }
+
     if (status === 1) {
       if (word.includes(" ")) {
         setLetterCount(letterCount + text.length);
@@ -170,21 +198,27 @@ export default function Main({
       else setCol("text-white bg-red-400");
       if (word === myGivenString[i]) setCol("bg-green-400 text-black");
     }
+    //LAST WORD
     if (
       i === wordCount - 1 &&
       (myGivenString[i] === word || word.includes(" "))
     ) {
+      //TODO ISSUE
+      // console.log(letterCount)
+      // setLetterCount(letterCount + text.length);
+      // console.log(letterCount)
       setWrittenWords(writtenWords + word);
-      setI(i + 1);
       if (word.trim() === myGivenString[i]) {
         correctWordAction();
       } else {
         incorrectWordAction();
       }
+      setI(i + 1);
       pause();
     }
     if (word.includes(" ")) setText("");
   };
+
   const addPunctutaion = () => {
     setTYPE_THIS((prev: string[]): string[] => {
       return prev.map((val, index, pre): string => {
@@ -219,7 +253,7 @@ export default function Main({
         }
       });
     });
-    console.log(wrodsList);
+    // console.log(wrodsList);
   };
 
   const removePunctutaion = () => {
