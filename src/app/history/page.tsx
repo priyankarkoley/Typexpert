@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import Link from 'next/link';
+import style from './styles.module.css'
 
 export default function Page() {
 	interface datatype {
@@ -133,7 +134,7 @@ export default function Page() {
 					</>
 				)
 			) : (
-				<div className="text-md flex w-full animate-pulse items-center justify-center p-7 text-justify text-white sm:p-48 sm:text-2xl">
+				<div className="text-md flex w-full animate-pulse items-center justify-center p-7 text-center text-white sm:p-48 sm:text-2xl">
 					Loading... Just one more second!
 				</div>
 			)}

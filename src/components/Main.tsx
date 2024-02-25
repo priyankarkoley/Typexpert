@@ -80,7 +80,7 @@ export default function Main({
 	}, []);
 
 	useEffect(() => {
-		console.log('data Changed: ', data);
+		//console.log('data Changed: ', data);
 		if (data) localStorage.setItem('data', JSON.stringify(data));
 	}, [data]);
 	let myGivenString = TYPE_THIS;
