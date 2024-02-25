@@ -282,7 +282,21 @@ export default function Main({
   const removePunctutaion = () => {
     setTYPE_THIS(wrodsList);
   };
-
+  const resetWithoutShufle = ()=>{
+    setStatus(0);
+    clearInterval(int);
+    setTime({ ms: 0, s: 0, m: 0, h: 0 });
+    setText('');
+    setCol('bg-indigo-300 bg-opacity-30 text-white');
+    setI(0);
+    setCorrectStore(correctStore.map(() => -1));
+    setLetterCount(0);
+    setCorrectCount(0);
+    setInCorrectCount(0);
+    settotalTime(0);
+    setWrittenWords('');
+    inputElement.current.focus();
+  }
   const reset = () => {
     function shuffle(array: string[]) {
       let currentIndex = array.length,
@@ -317,7 +331,6 @@ export default function Main({
     settotalTime(0);
     setWrittenWords("");
     inputElement.current.focus();
-    
   };
 
   return (
@@ -390,7 +403,7 @@ export default function Main({
             setPunc(!punc);
             if (!punc) addPunctutaion();
             else removePunctutaion();
-            reset();
+            resetWithoutShufle();
           }}
         >
           Punctuation : <span>{`${punc ? "ON!" : "OFF"}`}</span>
