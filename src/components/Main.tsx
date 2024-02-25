@@ -293,8 +293,8 @@ export default function Main({
 
 	return (
 		<div className="space-y-5 p-6 md:w-full md:space-y-10">
-			<div className="flex">
-				<div className="text-lg">
+			<div className="flex text-sm sm:text-lg">
+				<div>
 					<button
 						onClick={() => {
 							setWordCount(10);
@@ -388,6 +388,7 @@ export default function Main({
 			<input
 				ref={inputElement}
 				autoFocus
+				autoCapitalize="none"
 				className={`${col} w-full rounded-md p-2`}
 				onChange={e => {
 					start();

@@ -31,7 +31,8 @@ export default function Page() {
 				acarr.push(data[i].acc);
 				timearr.push(data[i].dateTime);
 			}
-			setOptions({
+			
+			const opt = {
 				title: {
 					text: 'Your Progress',
 					textStyle: { color: '#ffffff' },
@@ -78,7 +79,9 @@ export default function Page() {
 						data: acarr, // TODO
 					},
 				],
-			});
+			};
+			if (window.innerWidth < 640) opt.title.text = "";
+			setOptions(opt);
 		}
 	}, [data]);
 
@@ -99,7 +102,7 @@ export default function Page() {
 						</div>
 						<div className="flex gap-2">
 							<button
-								className="h-10 rounded-md bg-gray-200 bg-opacity-60 px-3 font-bold tracking-wider text-gray-950 shadow-md shadow-gray-700 hover:bg-opacity-100 hover:shadow-gray-900 disabled:bg-stone-500"
+								className="flex h-10 items-center justify-center rounded-md bg-gray-200 bg-opacity-60 px-3 font-bold tracking-wider text-gray-950 shadow-md shadow-gray-700 hover:bg-opacity-100 hover:shadow-gray-900 disabled:bg-stone-500"
 								onClick={() => {
 									localStorage.clear();
 									setData(JSON.parse('[]'));
@@ -109,7 +112,7 @@ export default function Page() {
 							</button>
 							<Link
 								href="/"
-								className="h-full rounded-md bg-gray-200 bg-opacity-60 px-3 pt-2 font-bold tracking-tight text-gray-950 shadow-md shadow-gray-700 hover:bg-opacity-100 hover:shadow-gray-900 disabled:bg-stone-500"
+								className="flex h-10 items-center justify-center rounded-md bg-gray-200 bg-opacity-60 px-3 font-bold tracking-tight text-gray-950 shadow-md shadow-gray-700 hover:bg-opacity-100 hover:shadow-gray-900 disabled:bg-stone-500"
 							>
 								HOME
 							</Link>
@@ -117,9 +120,10 @@ export default function Page() {
 					</>
 				) : (
 					<>
-						<div className="flex w-full items-center justify-center p-48 text-2xl text-white">
+						<div className="text-md flex w-full items-center justify-center p-7 text-center text-white sm:p-48 sm:text-2xl">
 							There's no history yet. Go make some history and come back!
 						</div>
+						<div className="h-20 sm:hidden"></div>
 						<Link
 							className="flex h-10 items-center rounded-md bg-gray-200 bg-opacity-60 px-3 font-bold tracking-wider text-gray-950 shadow-md shadow-gray-700 hover:bg-opacity-100 hover:shadow-gray-900 disabled:bg-stone-500"
 							href="/"
@@ -129,7 +133,7 @@ export default function Page() {
 					</>
 				)
 			) : (
-				<div className="flex w-full animate-pulse items-center justify-center p-48 text-2xl text-white">
+				<div className="text-md flex w-full animate-pulse items-center justify-center p-7 text-justify text-white sm:p-48 sm:text-2xl">
 					Loading... Just one more second!
 				</div>
 			)}
