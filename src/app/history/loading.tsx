@@ -1,12 +1,7 @@
-'use client';
-
 import React from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'History',
-};
+
 export default function Loading() {
   return (
     <div className="flex justify-center items-center h-screen w-full relative flex-col">

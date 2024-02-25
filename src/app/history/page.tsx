@@ -3,12 +3,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
-import type { Metadata } from "next";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "History",
-};
 
 export default function Page() {
   interface datatype {
