@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
 import dynamic from "next/dynamic";
-import Dashboard from "../components/Dashboard";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import Dashboard from "../components/Dashboard";
 import Footer from "@/components/Footer";
 const Main = dynamic(() => import("../components/Main"), {
   loading: () => (
-    <div className="space-y-5 md:space-y-10 md:w-full p-6">
+    <div className=" space-y-5 p-6 md:w-full md:space-y-10">
       <div className="text-lg">
         <button className={`underllne hover:underline`}>10</button> /{" "}
         <button className={`underllne hover:underline`}>20</button> /{" "}
@@ -17,7 +17,7 @@ const Main = dynamic(() => import("../components/Main"), {
         Loading...
       </div>
       <input
-        className={`bg-indigo-300 bg-opacity-30 text-white p-2 w-full rounded-md caret-neutral-50`}
+        className={`w-full rounded-md bg-indigo-300 bg-opacity-30 p-2 text-white caret-neutral-50`}
       />
       <div className="h-20">TIme Loading...</div>
     </div>
@@ -41,22 +41,22 @@ export default function Home() {
   const [correctStore, setCorrectStore] = useState<Array<number>>(
     Array.apply(null, Array(wordCount)).map(function () {
       return -1;
-    })
+    }),
   );
 
   return (
-    <div className="md:h-screen w-full relative flex-col justify-center">
-      <div className="absolute -z-50 bg-fixed bg-gray-900 w-full h-full overflow-hidden">
-        <div className="opacity-40 blur-xl rounded-full w-24 h-24 sm:w-44 sm:h-44 md:w-64 md:h-64 absolute top-1/2 -mt-10 left-2/3 -ml-32 animate-circlesm z-10 bg-violet-800"></div>
-        <div className="opacity-40 blur-xl rounded-full w-44 h-44 sm:w-64 sm:h-64 md:w-96 md:h-96 absolute top-1/2 -mt-72 left-1/2 -ml-10 animate-circlemd -z-50 bg-yellow-600"></div>
-        <div className="opacity-40 blur-xl rounded-full w-32 h-32 sm:w-52 sm:h-52 md:w-80 md:h-80 absolute top-1/2 -mt-80 left-1/3 -ml-32 animate-circlexl z-20 bg-red-500"></div>
-        <div className="opacity-40 blur-xl rounded-full w-32 h-32 sm:w-52 sm:h-52 md:w-80 md:h-80 absolute top-1/2 -mt-20 left-1/3 -ml-52 animate-circlesm -z-20 bg-green-600"></div>
-        <div className="opacity-40 blur-xl rounded-full w-15 h-15 sm:w-30 sm:h-30 md:w-40 md:h-40 absolute top-1/2 -mt-72 left-2/3 ml-12 animate-circlexl -z-20 bg-cyan-600"></div>
+    <div className="relative w-full flex-col justify-center md:h-screen">
+      <div className="absolute -z-50 h-full w-full overflow-hidden bg-gray-900 bg-fixed">
+        <div className="absolute left-2/3 top-1/2 z-10 -ml-32 -mt-10 h-24 w-24 animate-circlesm rounded-full bg-violet-800 opacity-40 blur-xl sm:h-44 sm:w-44 md:h-64 md:w-64"></div>
+        <div className="absolute left-1/2 top-1/2 -z-50 -ml-10 -mt-72 h-44 w-44 animate-circlemd rounded-full bg-yellow-600 opacity-40 blur-xl sm:h-64 sm:w-64 md:h-96 md:w-96"></div>
+        <div className="absolute left-1/3 top-1/2 z-20 -ml-32 -mt-80 h-32 w-32 animate-circlexl rounded-full bg-red-500 opacity-40 blur-xl sm:h-52 sm:w-52 md:h-80 md:w-80"></div>
+        <div className="absolute left-1/3 top-1/2 -z-20 -ml-52 -mt-20 h-32 w-32 animate-circlesm rounded-full bg-green-600 opacity-40 blur-xl sm:h-52 sm:w-52 md:h-80 md:w-80"></div>
+        <div className="w-15 h-15 sm:w-30 sm:h-30 absolute left-2/3 top-1/2 -z-20 -mt-72 ml-12 animate-circlexl rounded-full bg-cyan-600 opacity-40 blur-xl md:h-40 md:w-40"></div>
       </div>
       <Navbar />
-      <div className="flex justify-center items-center overflow-y-auto">
-        <div className="bg-red-8000 max-w-5xl p-7 sm:p-10 sm:inline-block md:flex space-y-8 md:space-y-0 md:space-x-7">
-          <div className="bg-green-100 bg-opacity-10 text-white md:w-3/5 rounded-lg lg:p-4 shadow-lg">
+      <div className="flex items-center justify-center overflow-y-auto">
+        <div className="bg-red-8000 max-w-5xl space-y-8 p-7 sm:inline-block sm:p-10 md:flex md:space-x-7 md:space-y-0">
+          <div className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-3/5 lg:p-4">
             <Main
               wordCount={wordCount}
               wpm={wpm}
@@ -80,7 +80,7 @@ export default function Home() {
               setCorrectStore={setCorrectStore}
             />
           </div>
-          <div className="bg-green-100 bg-opacity-10 text-white md:w-2/5 rounded-lg lg:p-4 shadow-lg">
+          <div className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-2/5 lg:p-4">
             <Dashboard
               wordCount={wordCount}
               // wpm={wpm}

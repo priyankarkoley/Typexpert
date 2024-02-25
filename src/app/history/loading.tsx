@@ -1,18 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
-
+import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center h-screen w-full relative flex-col">
-      <div className="absolute -z-50 bg-fixed bg-gray-900 w-full h-full overflow-hidden">
-        <div className="opacity-40 blur-xl rounded-full w-24 h-24 sm:w-44 sm:h-44 md:w-64 md:h-64 absolute top-1/2 -mt-10 left-2/3 -ml-32 animate-circlesm z-10 bg-violet-800"></div>
-        <div className="opacity-40 blur-xl rounded-full w-44 h-44 sm:w-64 sm:h-64 md:w-96 md:h-96 absolute top-1/2 -mt-72 left-1/2 -ml-10 animate-circlemd -z-50 bg-yellow-600"></div>
-        <div className="opacity-40 blur-xl rounded-full w-32 h-32 sm:w-52 sm:h-52 md:w-80 md:h-80 absolute top-1/2 -mt-80 left-1/3 -ml-32 animate-circlexl z-20 bg-red-500"></div>
-        <div className="opacity-40 blur-xl rounded-full w-32 h-32 sm:w-52 sm:h-52 md:w-80 md:h-80 absolute top-1/2 -mt-20 left-1/3 -ml-52 animate-circlesm -z-20 bg-green-600"></div>
-        <div className="opacity-40 blur-xl rounded-full w-15 h-15 sm:w-30 sm:h-30 md:w-40 md:h-40 absolute top-1/2 -mt-72 left-2/3 ml-12 animate-circlexl -z-20 bg-cyan-600"></div>
+    <div className="relative flex h-screen w-full flex-col items-center justify-center">
+      <div className="absolute -z-50 h-full w-full overflow-hidden bg-gray-900 bg-fixed">
+        <div className="absolute left-2/3 top-1/2 z-10 -ml-32 -mt-10 h-24 w-24 animate-circlesm rounded-full bg-violet-800 opacity-40 blur-xl sm:h-44 sm:w-44 md:h-64 md:w-64"></div>
+        <div className="absolute left-1/2 top-1/2 -z-50 -ml-10 -mt-72 h-44 w-44 animate-circlemd rounded-full bg-yellow-600 opacity-40 blur-xl sm:h-64 sm:w-64 md:h-96 md:w-96"></div>
+        <div className="absolute left-1/3 top-1/2 z-20 -ml-32 -mt-80 h-32 w-32 animate-circlexl rounded-full bg-red-500 opacity-40 blur-xl sm:h-52 sm:w-52 md:h-80 md:w-80"></div>
+        <div className="absolute left-1/3 top-1/2 -z-20 -ml-52 -mt-20 h-32 w-32 animate-circlesm rounded-full bg-green-600 opacity-40 blur-xl sm:h-52 sm:w-52 md:h-80 md:w-80"></div>
+        <div className="w-15 h-15 sm:w-30 sm:h-30 absolute left-2/3 top-1/2 -z-20 -mt-72 ml-12 animate-circlexl rounded-full bg-cyan-600 opacity-40 blur-xl md:h-40 md:w-40"></div>
       </div>
-      <div className="text-white p-48 w-full flex justify-center items-center text-3xl animate-pulse">
+      <div className="flex w-full animate-pulse items-center justify-center p-48 text-3xl text-white">
         LOADING...
       </div>
     </div>

@@ -48,10 +48,10 @@ export default function Main({
 }) {
   const inputElement = useRef<any>(null);
   const wrodsList = [..._TYPE_THIS];
-  const [TYPE_THIS, setTYPE_THIS] = useState<string[]>([]);//TODO
+  const [TYPE_THIS, setTYPE_THIS] = useState<string[]>([]); //TODO
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>(
-    "bg-indigo-300 bg-opacity-30 text-white"
+    "bg-indigo-300 bg-opacity-30 text-white",
   );
   const [int, setInt] = useState<NodeJS.Timer>();
   const [status, setStatus] = useState(0);
@@ -59,11 +59,11 @@ export default function Main({
 
   //LOOK HERE :: DATA & SETDATA DECLARATION
   const [data, setData] = useState<object[]>(
-    JSON.parse(localStorage.getItem("data") || "[]")
+    JSON.parse(localStorage.getItem("data") || "[]"),
   );
   // if(localStorage.getItem("data"))console.log(JSON.parse('[{"hello":"world"}]'));
 
-  useEffect(()=>{
+  useEffect(() => {
     function shuffle(array: string[]) {
       let currentIndex = array.length,
         randomIndex;
@@ -84,7 +84,7 @@ export default function Main({
       return array.slice(0, 50);
     }
     setTYPE_THIS(shuffle(_TYPE_THIS));
-  },[])
+  }, []);
 
   useEffect(() => {
     console.log("data Changed: ", data);
@@ -141,9 +141,9 @@ export default function Main({
       let hr = _hr < 10 ? "0" + _hr : _hr;
       let min =
         today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes();
-        let time = hr + ":" + min + (today.getHours() < 12 ? " AM" : " PM");
-        let dateTime = time + "\n" + date;
-        
+      let time = hr + ":" + min + (today.getHours() < 12 ? " AM" : " PM");
+      let dateTime = time + "\n" + date;
+
       // console.log(hr + ":" + min);
       // console.log("text", text);
       // console.log("lc: " + (letterCount + text.length + wordCount));
@@ -282,21 +282,21 @@ export default function Main({
   const removePunctutaion = () => {
     setTYPE_THIS(wrodsList);
   };
-  const resetWithoutShufle = ()=>{
+  const resetWithoutShufle = () => {
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
-    setText('');
-    setCol('bg-indigo-300 bg-opacity-30 text-white');
+    setText("");
+    setCol("bg-indigo-300 bg-opacity-30 text-white");
     setI(0);
     setCorrectStore(correctStore.map(() => -1));
     setLetterCount(0);
     setCorrectCount(0);
     setInCorrectCount(0);
     settotalTime(0);
-    setWrittenWords('');
+    setWrittenWords("");
     inputElement.current.focus();
-  }
+  };
   const reset = () => {
     function shuffle(array: string[]) {
       let currentIndex = array.length,
@@ -334,7 +334,7 @@ export default function Main({
   };
 
   return (
-    <div className="space-y-5 md:space-y-10 md:w-full p-6">
+    <div className="space-y-5 p-6 md:w-full md:space-y-10">
       <div className="flex">
         <div className="text-lg">
           <button
@@ -344,7 +344,7 @@ export default function Main({
               setCorrectStore(
                 Array.apply(null, Array(10)).map(function () {
                   return -1;
-                })
+                }),
               );
             }}
             className={`${wordCount === 10 ? "underline" : ""} hover:underline`}
@@ -359,7 +359,7 @@ export default function Main({
               setCorrectStore(
                 Array.apply(null, Array(20)).map(function () {
                   return -1;
-                })
+                }),
               );
             }}
             className={`${wordCount === 20 ? "underline" : ""} hover:underline`}
@@ -374,7 +374,7 @@ export default function Main({
               setCorrectStore(
                 Array.apply(null, Array(35)).map(function () {
                   return -1;
-                })
+                }),
               );
             }}
             className={`${wordCount === 35 ? "underline" : ""} hover:underline`}
@@ -389,7 +389,7 @@ export default function Main({
               setCorrectStore(
                 Array.apply(null, Array(50)).map(function () {
                   return -1;
-                })
+                }),
               );
             }}
             className={`${wordCount === 50 ? "underline" : ""} hover:underline`}
@@ -421,8 +421,8 @@ export default function Main({
                   correctStore[index] === -1
                     ? "text-white"
                     : correctStore[index] === 1
-                    ? "text-green-500"
-                    : "text-red-500"
+                      ? "text-green-500"
+                      : "text-red-500"
                 }`}
               >{`${value}`}</span>{" "}
             </span>
@@ -432,7 +432,7 @@ export default function Main({
       <input
         ref={inputElement}
         autoFocus
-        className={`${col} p-2 w-full rounded-md`}
+        className={`${col} w-full rounded-md p-2`}
         onChange={(e) => {
           start();
           setText(e.target.value);
