@@ -99,20 +99,28 @@ export default function Page() {
             <div className="w-full h-96 px-10">
               <ReactEcharts option={options} />
             </div>
-            <button
-              className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 rounded-md h-10"
-              onClick={() => {
-                localStorage.clear();
-                setData(JSON.parse('[]'));
-              }}
-            >
-              CLEAR DATA
-            </button>
+            <div className="flex gap-2">
+              <button
+                className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 rounded-md h-10"
+                onClick={() => {
+                  localStorage.clear();
+                  setData(JSON.parse('[]'));
+                }}
+              >
+                CLEAR DATA
+              </button>
+              <Link
+                href="/"
+                className="disabled:bg-stone-500 text-gray-950 font-bold tracking-tight h-full bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 pt-2 rounded-md"
+              >
+                HOME
+              </Link>
+            </div>
           </>
         ) : (
           <>
             <div className="text-white p-48 w-full flex justify-center items-center text-2xl">
-              There's no history yet. Go make history and come back!
+              There's no history yet. Go make some history and come back!
             </div>
             <Link
               className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider h-10 bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 rounded-md flex items-center"

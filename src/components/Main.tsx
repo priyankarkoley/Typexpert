@@ -48,7 +48,7 @@ export default function Main({
 }) {
   const inputElement = useRef<any>(null);
   const wrodsList = [..._TYPE_THIS];
-  const [TYPE_THIS, setTYPE_THIS] = useState([..._TYPE_THIS]);
+  const [TYPE_THIS, setTYPE_THIS] = useState<string[]>([]);//TODO
   const [i, setI] = useState<number>(0);
   const [col, setCol] = useState<string>(
     "bg-indigo-300 bg-opacity-30 text-white"
@@ -62,6 +62,29 @@ export default function Main({
     JSON.parse(localStorage.getItem("data") || "[]")
   );
   // if(localStorage.getItem("data"))console.log(JSON.parse('[{"hello":"world"}]'));
+
+  useEffect(()=>{
+    function shuffle(array: string[]) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+      array[0] = array[0][0].toUpperCase() + array[0].slice(1);
+      return array.slice(0, 50);
+    }
+    setTYPE_THIS(shuffle(_TYPE_THIS));
+  },[])
 
   useEffect(() => {
     console.log("data Changed: ", data);
@@ -261,6 +284,26 @@ export default function Main({
   };
 
   const reset = () => {
+    function shuffle(array: string[]) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+      array[0] = array[0][0].toUpperCase() + array[0].slice(1);
+      return array.slice(0, 50);
+    }
+    setTYPE_THIS(shuffle(_TYPE_THIS));
     setStatus(0);
     clearInterval(int);
     setTime({ ms: 0, s: 0, m: 0, h: 0 });
@@ -274,6 +317,7 @@ export default function Main({
     settotalTime(0);
     setWrittenWords("");
     inputElement.current.focus();
+    
   };
 
   return (

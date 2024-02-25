@@ -12,18 +12,9 @@ export default function Loading() {
         <div className="opacity-40 blur-xl rounded-full w-32 h-32 sm:w-52 sm:h-52 md:w-80 md:h-80 absolute top-1/2 -mt-20 left-1/3 -ml-52 animate-circlesm -z-20 bg-green-600"></div>
         <div className="opacity-40 blur-xl rounded-full w-15 h-15 sm:w-30 sm:h-30 md:w-40 md:h-40 absolute top-1/2 -mt-72 left-2/3 ml-12 animate-circlexl -z-20 bg-cyan-600"></div>
       </div>
-      <div>
-        <div className="text-white p-48 w-full flex justify-center items-center text-3xl animate-pulse">
-          LOADING...
-        </div>
-        <Link
-          className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider h-10 bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 rounded-md flex items-center"
-          href="/"
-          >
-            Let's Make Some Data
-          </Link>
-        <div/>
-    </div>
+      <div className="text-white p-48 w-full flex justify-center items-center text-3xl animate-pulse">
+        LOADING...
+      </div>
     </div>
   );
 }
