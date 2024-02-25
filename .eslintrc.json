@@ -1,11 +1,11 @@
 {
-  "extends": "next",
-  "rules": {
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": "latest"
-  }
+	"extends": "next",
+	"rules": {
+		"react/no-unescaped-entities": "off",
+		"@next/next/no-page-custom-font": "off"
+	},
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": "latest"
+	}
 }
