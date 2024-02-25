@@ -14,7 +14,7 @@ export default function Loading() {
       </div>
       <div>
         <div className="text-white p-48 w-full flex justify-center items-center text-3xl animate-pulse">
-          LOADING... Wait just a second
+          LOADING...
         </div>
         <Link
           className="disabled:bg-stone-500 text-gray-950 font-bold tracking-wider h-10 bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 rounded-md flex items-center"

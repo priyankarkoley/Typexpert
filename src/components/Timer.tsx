@@ -29,7 +29,7 @@ export default function Timer({
       <Link
         className="disabled:bg-stone-500 text-gray-950 font-bold tracking-tight h-full bg-gray-200 bg-opacity-60 shadow-md hover:shadow-gray-900 shadow-gray-700 hover:bg-opacity-100 px-3 pt-2 rounded-md"
         href={'/history'}
-        target="_blank"
+        // target="_blank"
       >
         HISTORY
       </Link>
