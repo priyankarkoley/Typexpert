@@ -42,7 +42,11 @@ export default function Home() {
 	);
 
 	return (
-		<motion.div layout className="relative w-full flex-col justify-center md:h-screen">
+		<motion.div
+			layout
+			transition={{ layout: { duration: 0.5, type: 'spring' } }}
+			className="relative w-full flex-col justify-center overflow-y-hidden md:h-screen"
+		>
 			<div className="absolute -z-50 h-full w-full overflow-hidden bg-gray-900 bg-fixed">
 				<div className="absolute left-2/3 top-1/2 z-10 -ml-32 -mt-10 h-24 w-24 animate-circlesm rounded-full bg-violet-800 opacity-40 blur-xl sm:h-44 sm:w-44 md:h-64 md:w-64"></div>
 				<div className="absolute left-1/2 top-1/2 -z-50 -ml-10 -mt-72 h-44 w-44 animate-circlemd rounded-full bg-yellow-600 opacity-40 blur-xl sm:h-64 sm:w-64 md:h-96 md:w-96"></div>
@@ -51,9 +55,14 @@ export default function Home() {
 				<div className="w-15 h-15 sm:w-30 sm:h-30 absolute left-2/3 top-1/2 -z-20 -mt-72 ml-12 animate-circlexl rounded-full bg-cyan-600 opacity-40 blur-xl md:h-40 md:w-40"></div>
 			</div>
 			<Navbar />
-			<div className="flex items-center justify-center overflow-y-auto">
+			<motion.div
+				layout
+				transition={{ layout: { duration: 1, type: 'spring' } }}
+				className="flex items-center justify-center overflow-y-auto"
+			>
 				<div className="bg-red-8000 max-w-5xl space-y-8 p-7 sm:inline-block sm:p-10 md:flex md:space-x-7 md:space-y-0">
-					<div className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-3/5 lg:p-4">
+					<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-3/5 lg:p-4"
+					>
 						<Main
 							wordCount={wordCount}
 							wpm={wpm}
@@ -76,8 +85,9 @@ export default function Home() {
 							correctStore={correctStore}
 							setCorrectStore={setCorrectStore}
 						/>
-					</div>
-					<div className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-2/5 lg:p-4">
+					</motion.div>
+					<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="rounded-lg bg-green-100 bg-opacity-10 text-white shadow-lg md:w-2/5 lg:p-4"
+					>
 						<Dashboard
 							wordCount={wordCount}
 							// wpm={wpm}
@@ -90,10 +100,12 @@ export default function Home() {
 							correctStore={correctStore}
 							text={text}
 						/>
-					</div>
+					</motion.div>
 				</div>
-			</div>
+			</motion.div>
 			<Footer />
 		</motion.div>
 	);
 }
+
+('');

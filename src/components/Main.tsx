@@ -293,7 +293,11 @@ export default function Main({
 	};
 
 	return (
-		<motion.div layout className="space-y-5 p-6 md:w-full md:space-y-10">
+		<motion.div
+			layout
+			transition={{ layout: { duration: 0.8, type: 'spring' } }}
+			className="space-y-5 p-6 md:w-full md:space-y-10"
+		>
 			<div className="flex text-sm sm:text-lg">
 				<div>
 					<button
@@ -368,11 +372,17 @@ export default function Main({
 					Punctuation : <span>{`${punc ? 'ON!' : 'OFF'}`}</span>
 				</button>
 			</div>
-			<div className="w-full text-justify text-sm md:text-base lg:text-lg">
+			<motion.div
+				layout
+				transition={{ layout: { duration: 0.2, type: 'spring' } }}
+				className="w-full text-justify text-sm md:text-base lg:text-lg"
+			>
 				{TYPE_THIS.slice(0, wordCount).map((value: String, index: any) => {
 					return (
-						<span key={index}>
-							<span
+						<motion.span layout transition={{ layout: { duration: 0.5, type: 'spring' } }} key={index}>
+							<motion.span
+								layout
+								transition={{ layout: { duration: 0.5, type: 'spring' } }}
 								className={`${i === index ? 'border-b-2 border-green-500' : ''} ${
 									correctStore[index] === -1
 										? 'text-white'
@@ -380,12 +390,14 @@ export default function Main({
 											? 'text-green-500'
 											: 'text-red-500'
 								}`}
-							>{`${value}`}</span>{' '}
-						</span>
+							>{`${value}`}</motion.span>{' '}
+						</motion.span>
 					);
 				})}
-			</div>
-			<input
+			</motion.div>
+			<motion.input
+				layout
+				transition={{ layout: { duration: 0.5, type: 'spring' } }}
 				ref={inputElement}
 				autoFocus
 				autoCapitalize="none"

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 
 export default function Dashboard({
@@ -31,43 +32,44 @@ export default function Dashboard({
 			: (correctCount / wordCount) * 100 >= 65
 				? 'border-yellow-600 text-yellow-600'
 				: 'border-rose-600 text-rose-600';
+				
 	return (
-		<div className="w-full px-6 py-4">
-			<div className="mb-10 flex items-center md:text-2xl lg:text-3xl">
+		<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="w-full px-6 py-4">
+			<motion.div layout transition={{ layout: { duration: 0.2, type: 'spring' } }} className="mb-10 flex items-center md:text-2xl lg:text-3xl">
 				YOUR DASHBOARD:
 				{/* {letterCount + text.length - 1 + wordCount} */}
-			</div>
-			<div className="space-y-4">
-				<div className="relative flex items-center">
+			</motion.div>
+			<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="space-y-4">
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="relative flex items-center">
 					Speed:
-					<div className={`text-xl ${col1} absolute right-0 inline-block w-fit border-2 px-2 font-bold`}>
+					<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className={`text-xl ${col1} absolute right-0 inline-block w-fit border-2 px-2 font-bold`}>
 						{(letterCount + wordCount) / 5 / (totalTime / 600)
 							? (letterCount + wordCount) / 5 / (totalTime / 600) !== Infinity
 								? Math.round((letterCount + wordCount) / 5 / (totalTime / 600))
 								: '00'
 							: 'error'}{' '}
 						wpm.
-					</div>
-				</div>
-				<div className="relative flex items-center">
+					</motion.div>
+				</motion.div>
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="relative flex items-center">
 					Accuracy:
 					<span className={`text-xl ${col2} absolute right-0 inline-block w-fit border-2 px-2 font-bold`}>
 						{(correctCount / wordCount) * 100 ? Math.round((correctCount / wordCount) * 100) : '0'}%
 					</span>
-				</div>
-				<div className="relative flex items-center">
+				</motion.div>
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="relative flex items-center">
 					Total Words:
 					<span className="absolute right-0 inline-block w-fit border-2 border-green-500 px-2 text-xl font-bold text-green-500">
 						{wordCount}
 					</span>
-				</div>
-				<div className="relative flex items-center">
+				</motion.div>
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="relative flex items-center">
 					Correctly Spelled:
 					<span className="absolute right-0 inline-block w-fit border-2 border-green-500 px-2 text-xl font-bold text-green-500">
 						{correctCount}
 					</span>
-				</div>
-				<div className="relative flex items-center">
+				</motion.div>
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="relative flex items-center">
 					Incorrectly Spelled:
 					<span
 						className={`text-xl ${
@@ -76,8 +78,8 @@ export default function Dashboard({
 					>
 						{inCorrectCount}
 					</span>
-				</div>
-				<div className="">
+				</motion.div>
+				<motion.div layout transition={{ layout: { duration: 0.5, type: 'spring' } }} className="">
 					You have written:
 					<div>
 						{writtenWords
@@ -91,8 +93,8 @@ export default function Dashboard({
 								);
 							})}
 					</div>
-				</div>
-			</div>
-		</div>
+				</motion.div>
+			</motion.div>
+		</motion.div>
 	);
 }
