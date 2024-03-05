@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from 'react';
 import Timer from './Timer';
 import { _TYPE_THIS } from './../var';
+import { motion } from 'framer-motion';
 
 export default function Main({
 	wordCount,
@@ -292,7 +293,7 @@ export default function Main({
 	};
 
 	return (
-		<div className="space-y-5 p-6 md:w-full md:space-y-10">
+		<motion.div layout className="space-y-5 p-6 md:w-full md:space-y-10">
 			<div className="flex text-sm sm:text-lg">
 				<div>
 					<button
@@ -367,9 +368,8 @@ export default function Main({
 					Punctuation : <span>{`${punc ? 'ON!' : 'OFF'}`}</span>
 				</button>
 			</div>
-
 			<div className="w-full text-justify text-sm md:text-base lg:text-lg">
-				{TYPE_THIS.slice(0, wordCount).map((value, index) => {
+				{TYPE_THIS.slice(0, wordCount).map((value: String, index: any) => {
 					return (
 						<span key={index}>
 							<span
@@ -400,6 +400,6 @@ export default function Main({
 			<div className="">
 				<Timer time={time} onReset={reset} />
 			</div>
-		</div>
+		</motion.div>
 	);
 }

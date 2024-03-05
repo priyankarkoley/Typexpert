@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Dashboard from '../components/Dashboard';
 import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 const Main = dynamic(() => import('../components/Main'), {
 	loading: () => (
 		<div className=" space-y-5 p-6 md:w-full md:space-y-10">
@@ -41,7 +42,7 @@ export default function Home() {
 	);
 
 	return (
-		<div className="relative w-full flex-col justify-center md:h-screen">
+		<motion.div layout className="relative w-full flex-col justify-center md:h-screen">
 			<div className="absolute -z-50 h-full w-full overflow-hidden bg-gray-900 bg-fixed">
 				<div className="absolute left-2/3 top-1/2 z-10 -ml-32 -mt-10 h-24 w-24 animate-circlesm rounded-full bg-violet-800 opacity-40 blur-xl sm:h-44 sm:w-44 md:h-64 md:w-64"></div>
 				<div className="absolute left-1/2 top-1/2 -z-50 -ml-10 -mt-72 h-44 w-44 animate-circlemd rounded-full bg-yellow-600 opacity-40 blur-xl sm:h-64 sm:w-64 md:h-96 md:w-96"></div>
@@ -93,6 +94,6 @@ export default function Home() {
 				</div>
 			</div>
 			<Footer />
-		</div>
+		</motion.div>
 	);
 }
