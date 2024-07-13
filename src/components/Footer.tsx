@@ -16,9 +16,9 @@ export default function Footer() {
 				<Link
 					target="_blank"
 					className="animate-pulse text-white hover:cursor-pointer hover:text-lime-400 hover:underline"
-					href={'https://priyankarkoley.github.io/myspace/'}
+					href={'https://priyankarkoley.com'}
 				>
-					priyankar_koley
+					priyankarkoley
 				</Link>{' '}
 				with <span className="animate-pulse text-white">♥️</span>
 			</div>
